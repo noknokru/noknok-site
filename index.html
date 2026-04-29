@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Нокнок — дизайн-агентство</title>
+<link rel="stylesheet" href="styles/main.css">
+<style>
+/* ─── УСЛУГИ ─── */
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.service-card {
+  border: 1px solid var(--c-border); border-radius: var(--r-card); padding: 24px;
+  text-decoration: none; display: flex; flex-direction: column;
+  gap: 12px; transition: border-color 0.15s, background 0.15s;
+}
+.service-card:hover { border-color: #bbb; background: #fafafa; }
+.service-card-title { font-size: 20px; font-weight: 500; color: var(--c-ink); line-height: var(--lh-tight); letter-spacing: var(--ls-tighter); }
+.service-card-desc  { font-size: var(--fs-small); line-height: 1.55; color: var(--c-ink-3); flex: 1; }
+.service-card-arrow { color: #ccc; align-self: flex-end; transition: color 0.15s; }
+.service-card:hover .service-card-arrow { color: #888; }
+
+/* ─── ФОРМАТЫ РАБОТЫ ─── */
+.formats-grid { display: flex; flex-direction: column; gap: 10px; }
+.format-card {
+  border: 1px solid var(--c-border); border-radius: var(--r-card); padding: 24px 28px;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+}
+.format-body { display: flex; flex-direction: column; gap: 6px; }
+.format-name { font-size: 20px; font-weight: 500; color: var(--c-ink); letter-spacing: var(--ls-tighter); }
+.format-desc { font-size: var(--fs-ui); color: var(--c-ink-2); line-height: 1.5; }
+.format-price { font-size: var(--fs-ui); font-weight: 500; color: var(--c-ink-3); white-space: nowrap; padding-top: 4px; }
+
+/* ─── ПОРТФОЛИО ─── */
+.portfolio-list { display: flex; flex-direction: column; gap: 12px; }
+.portfolio-card {
+  display: block; text-decoration: none;
+  border: 1px solid var(--c-border); border-radius: var(--r-card); overflow: hidden;
+  transition: border-color 0.15s;
+}
+.portfolio-card:hover { border-color: #bbb; }
+.portfolio-img { width: 100%; height: 220px; background: var(--c-border); }
+.portfolio-body { padding: 24px 28px 28px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.portfolio-meta { display: flex; flex-direction: column; gap: 6px; }
+.portfolio-tag   { font-size: var(--fs-label); letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-ink-3); }
+.portfolio-title { font-size: var(--fs-h3); font-weight: 500; letter-spacing: -0.02em; color: var(--c-ink); line-height: var(--lh-tight); }
+.portfolio-arrow { color: #ccc; flex-shrink: 0; padding-top: 4px; }
+</style>
+</head>
+<body>
+
+<div id="hero-root"></div>
+
+<!-- ПОДХОД -->
+<div class="section section-alt">
+  <div class="container">
+    <div class="section-label">Подход</div>
+    <h2 class="section-title">Работаем на всех уровнях продукта</h2>
+    <p class="about-text">Когда функции у всех одинаковые — побеждает ощущение. Интерфейс это не набор экранов, это поведение продукта которое пользователь считывает каждую секунду.</p>
+    <ul class="bullet-list">
+      <li>Визуал: композиция, ритм, цвет. Чтобы интерфейс не выглядел «как у всех».</li>
+      <li>Поведение: как человек движется по продукту, где тормозит, где теряется.</li>
+      <li>Логика: каждый экран решает задачу бизнеса.</li>
+      <li>Детали: тексты, анимации, реакции. Они формируют ощущение бренда.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Услуги</div>
+    <h2 class="section-title">Что делаем</h2>
+    <div class="services-grid">
+      <a class="service-card" href="service-design.html">
+        <span class="service-card-title">Дизайн интерфейсов</span>
+        <p class="service-card-desc">Проектируем продукт от концепции до макетов. Не набор экранов — связанная система с характером бренда.</p>
+        <svg class="service-card-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M4 16L16 4M16 4H8M16 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="service-card" href="ux-ui-audit.html">
+        <span class="service-card-title">UX/UI аудит</span>
+        <p class="service-card-desc">Показываем где продукт теряет пользователей и почему. Через 5–7 дней — детальная презентация с приоритетами и план действий.</p>
+        <svg class="service-card-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M4 16L16 4M16 4H8M16 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="service-card" href="service-branding.html">
+        <span class="service-card-title">Цифровой брендинг</span>
+        <p class="service-card-desc">Переносим бренд в интерфейс: визуал, поведение, тон. Чтобы продукт и бренд говорили одним языком.</p>
+        <svg class="service-card-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M4 16L16 4M16 4H8M16 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a class="service-card" href="service-landing.html">
+        <span class="service-card-title">Продуктовый лендинг</span>
+        <p class="service-card-desc">Страница которая объясняет и продаёт. Структура, текст и визуал работают вместе на конверсию.</p>
+        <svg class="service-card-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M4 16L16 4M16 4H8M16 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="section section-alt">
+  <div class="col-8">
+    <div class="section-label">Кейсы</div>
+    <h2 class="section-title">Избранные проекты</h2>
+    <div class="portfolio-list">
+      <a class="portfolio-card" href="case-1.html">
+        <div class="portfolio-img"></div>
+        <div class="portfolio-body">
+          <div class="portfolio-meta">
+            <div class="portfolio-tag">Брендинг · Интерфейсы</div>
+            <div class="portfolio-title">Урбика — путеводитель по городу для детей и родителей</div>
+          </div>
+          <svg class="portfolio-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 16L16 4M16 4H8M16 4V12" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+      <a class="portfolio-card" href="case-2.html">
+        <div class="portfolio-img"></div>
+        <div class="portfolio-body">
+          <div class="portfolio-meta">
+            <div class="portfolio-tag">Брендинг · Интерфейсы</div>
+            <div class="portfolio-title">Редизайн платформы для управления командой</div>
+          </div>
+          <svg class="portfolio-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 16L16 4M16 4H8M16 4V12" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+      <a class="portfolio-card" href="case-3.html">
+        <div class="portfolio-img"></div>
+        <div class="portfolio-body">
+          <div class="portfolio-meta">
+            <div class="portfolio-tag">Продукт · UX</div>
+            <div class="portfolio-title">Мобильное приложение для онлайн-записи</div>
+          </div>
+          <svg class="portfolio-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 16L16 4M16 4H8M16 4V12" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Клиенты</div>
+    <p class="about-text">Работаем с продуктами в e-commerce, edtech, fintech, autotech, foodtech, web3.</p>
+    <div class="logos-grid">
+      <span class="logo-pill">Mango Proxy</span>
+      <span class="logo-pill">Россия — Моя история</span>
+      <span class="logo-pill">LaborX</span>
+      <span class="logo-pill">WakeUp</span>
+      <span class="logo-pill">SteadyControl</span>
+      <span class="logo-pill">Burda</span>
+      <span class="logo-pill">Tiggy</span>
+      <span class="logo-pill">Атлас</span>
+      <span class="logo-pill">Startoria</span>
+      <span class="logo-pill">CoFresh</span>
+      <span class="logo-pill">GeekBrains</span>
+      <span class="logo-pill">Appruvo</span>
+    </div>
+  </div>
+</div>
+
+<!-- FORMATS -->
+<div class="section section-alt">
+  <div class="container">
+    <div class="section-label">Форматы</div>
+    <h2 class="section-title">Как работаем</h2>
+    <div class="formats-grid">
+      <div class="format-card">
+        <div class="format-body">
+          <div class="format-name">Фикс</div>
+          <p class="format-desc">Для задач с чётким результатом. Фиксированная стоимость, персональный менеджер.</p>
+        </div>
+        <div class="format-price">2500 ₽/час</div>
+      </div>
+      <div class="format-card">
+        <div class="format-body">
+          <div class="format-name">T&amp;M</div>
+          <p class="format-desc">Когда задачи меняются по ходу. Подключаемся по мере необходимости.</p>
+        </div>
+        <div class="format-price">2000 ₽/час</div>
+      </div>
+      <div class="format-card">
+        <div class="format-body">
+          <div class="format-name">Ретейнер</div>
+          <p class="format-desc">Когда дизайн нужен постоянно. Работаем как внутренняя команда с прямым доступом к дизайнерам.</p>
+        </div>
+        <div class="format-price">1800 ₽/час</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">О нас</div>
+    <h2 class="section-title">Дизайн-студия с 2013 года</h2>
+    <p class="about-text">Специализируемся на интерфейсах цифровых продуктов. За 12 лет работали с GeekBrains, Burda, LaborX, SteadyControl и сотнями других команд в разных доменах.</p>
+    <div class="ratings-row">
+      <span class="rating-item"><strong>5.0</strong> · рейтинг</span>
+      <span class="rating-item"><strong>Топ 5</strong> студий продуктового дизайна</span>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="section" id="reviews-root"></div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="cta-inner">
+    <h2 class="cta-title">Обсудим ваш проект?</h2>
+    <p class="cta-sub">Расскажите о задаче — мы ответим в течение дня и предложим формат работы.</p>
+    <button class="cta-btn" onclick="openForm()">Оставить заявку</button>
+    <div class="cta-hints">Бесплатная консультация · Без обязательств</div>
+  </div>
+</div>
+
+<script src="components/navbar.js"></script>
+<script src="components/hero.js"></script>
+<script src="components/reviews.js"></script>
+<script>
+renderReviews('reviews-root', { label: 'Отзывы', title: 'Что говорят клиенты' });
+
+renderHero({
+  title: 'Интерфейсы, которые притягивают',
+  image: 'img/hero.png'
+});
+
+const hero    = document.getElementById('hero');
+const leftnav = document.getElementById('leftnav');
+const copy    = document.getElementById('copyright');
+const topnav  = document.getElementById('topnav');
+
+function onScroll() {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
+  topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
+  const pastHero = window.scrollY > hero.offsetHeight * 0.85;
+  leftnav.classList.toggle('dark', pastHero);
+  copy.classList.toggle('dark', pastHero);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>

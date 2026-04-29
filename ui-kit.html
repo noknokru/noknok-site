@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Kit — Нокнок</title>
+<link rel="stylesheet" href="styles/main.css">
+<style>
+/* ─── UI KIT LAYOUT ─── */
+body { background: #f2f2f2; }
+
+.kit-page { max-width: 960px; margin: 0 auto; padding: 64px 40px 120px; }
+
+.kit-header { margin-bottom: 72px; padding-bottom: 28px; border-bottom: 1px solid #ddd; }
+.kit-header-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; }
+.kit-header-title { font-size: 32px; color: #000; line-height: 1.1; letter-spacing: -0.02em; }
+.kit-header-meta  { font-size: 13px; color: #aaa; margin-top: 10px; }
+
+.kit-section { margin-bottom: 80px; }
+.kit-section-title {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: #aaa;
+  padding-bottom: 14px; border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 32px;
+}
+
+/* Row layout: meta left, demo right */
+.kit-row {
+  display: flex; gap: 32px; align-items: flex-start;
+  padding: 24px 0; border-bottom: 1px solid #ebebeb;
+}
+.kit-row:last-child { border-bottom: none; }
+.kit-meta { width: 180px; flex-shrink: 0; padding-top: 2px; }
+.kit-name { font-size: 13px; color: #555; margin-bottom: 4px; font-weight: 500; }
+.kit-var  { font-size: 11px; color: #bbb; line-height: 1.6; font-family: 'SF Mono', 'Fira Code', monospace; }
+.kit-demo { flex: 1; min-width: 0; }
+
+/* ─── TOKENS TABLE ─── */
+.tokens-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.token-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px; padding: 10px 14px; background: #fff; border-radius: 10px;
+  border: 1px solid #ebebeb;
+}
+.token-name  { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; color: #555; }
+.token-value { font-size: 12px; color: #aaa; text-align: right; }
+
+/* ─── PALETTE ─── */
+.palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; }
+.swatch { display: flex; flex-direction: column; gap: 8px; }
+.swatch-box { height: 72px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.07); }
+.swatch-var  { font-size: 11px; color: #aaa; font-family: 'SF Mono', 'Fira Code', monospace; }
+.swatch-hex  { font-size: 12px; color: #777; }
+
+/* ─── RADIUS DEMO ─── */
+.radius-row { display: flex; gap: 20px; flex-wrap: wrap; }
+.radius-box {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.radius-shape {
+  width: 80px; height: 80px; background: #fff; border: 1px solid #e0e0e0;
+}
+.radius-label { font-size: 11px; color: #aaa; text-align: center; font-family: 'SF Mono', 'Fira Code', monospace; }
+
+/* ─── COMPONENT DEMOS ─── */
+
+/* Navbar */
+.demo-navbar {
+  width: 450px; height: 56px; background: #000;
+  border-radius: 18px; display: flex; align-items: stretch; padding: 5px;
+}
+.demo-navbar-menu {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 17px; font-weight: 500; color: #fff;
+}
+.demo-navbar-cta {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  background: #000; border-radius: 13px; border: 1.5px solid rgba(53,52,57,0.5);
+  font-size: 17px; font-weight: 500; color: #fff;
+}
+.demo-navbar-progress {
+  width: 450px; height: 56px;
+  background: linear-gradient(to right, #262626 55%, transparent 55%), #000;
+  border-radius: 18px; display: flex; align-items: stretch; padding: 5px;
+}
+
+/* Hero preview */
+.demo-hero {
+  width: 450px; height: 260px; background: #0d0d0d; border-radius: 20px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 32px;
+}
+.demo-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+.demo-hero-content { position: relative; z-index: 1; text-align: center; }
+.demo-hero-title { font-size: 28px; font-weight: 700; color: #fff; line-height: 1.1; letter-spacing: -0.025em; }
+.demo-hero-meta  { display: flex; align-items: center; gap: 8px; justify-content: center; margin-top: 12px; }
+.demo-hero-avatar { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg,#555,#888); }
+.demo-hero-author { font-size: 14px; color: rgba(255,255,255,0.6); }
+
+/* Brand */
+.demo-brand { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+.demo-brand .b-main { color: #111; }
+.demo-brand .b-sep  { color: #bbb; }
+.demo-brand .b-sub  { color: #aaa; }
+.demo-brand-dark { background: #0d0d0d; padding: 16px 20px; border-radius: 12px; display: inline-block; margin-top: 10px; }
+.demo-brand-dark .b-main { color: #fff; }
+
+/* Buttons */
+.demo-buttons { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+/* Service card */
+.demo-service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 450px; }
+.demo-service-card {
+  border: 1px solid #e8e8e8; border-radius: 20px; padding: 24px;
+  display: flex; flex-direction: column; gap: 36px; background: #fff;
+}
+.demo-service-title { font-size: 20px; font-weight: 500; color: #111; line-height: 1.2; letter-spacing: -0.015em; }
+.demo-service-arrow { color: #ccc; align-self: flex-end; }
+
+/* Portfolio card */
+.demo-portfolio {
+  border: 1px solid #e8e8e8; border-radius: 20px; overflow: hidden;
+  width: 450px; background: #fff;
+}
+.demo-portfolio-img { width: 100%; height: 160px; background: #e8e8e8; }
+.demo-portfolio-body { padding: 20px 24px 24px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.demo-portfolio-tag { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
+.demo-portfolio-title { font-size: 20px; font-weight: 500; color: #111; line-height: 1.2; }
+
+/* Review card */
+.demo-review {
+  background: #fff; border: 1px solid #e8e8e8; border-radius: 24px;
+  padding: 32px; width: 450px; display: flex; flex-direction: column; gap: 28px;
+}
+.demo-review-quote { font-size: 18px; line-height: 1.55; color: #111; }
+.demo-review-author { display: flex; align-items: center; gap: 16px; }
+.demo-review-avatar { width: 72px; height: 72px; border-radius: 12px; background: #e0e0e0; flex-shrink: 0; }
+.demo-review-name { font-size: 20px; font-weight: 500; color: #000; }
+.demo-review-role { font-size: 14px; color: #999; margin-top: 3px; }
+.demo-review-dots { display: flex; gap: 8px; margin-top: 4px; }
+.demo-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; }
+.demo-dot.on { background: #111; }
+
+/* Logo pills */
+.demo-logos { display: flex; flex-wrap: wrap; gap: 8px; max-width: 450px; }
+.demo-logo-pill { padding: 8px 16px; border: 1px solid #e8e8e8; border-radius: 100px; font-size: 14px; color: #aaa; background: #fff; }
+
+/* Expertise tags */
+.demo-tags { display: flex; flex-wrap: wrap; gap: 8px; max-width: 450px; }
+.demo-tag { padding: 8px 14px; border: 1px solid #e8e8e8; border-radius: 100px; font-size: 14px; color: #555; background: #fff; }
+
+/* TOC */
+.demo-toc { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.demo-toc-pill { font-size: 16px; font-weight: 500; color: #aaa; border: 1.5px solid #aaa; border-radius: 8px; padding: 6px 13px; white-space: nowrap; }
+.demo-toc-pill.on { color: #000; border-color: #000; }
+
+/* Article elements */
+.demo-blockquote { border-left: 2px solid #111; padding: 4px 0 4px 18px; font-size: 18px; font-style: italic; color: #111; line-height: 1.45; max-width: 450px; }
+.demo-callout { background: #f7f7f7; border-radius: 12px; padding: 14px 18px; font-size: 16px; color: #555; display: flex; gap: 10px; max-width: 450px; line-height: 1.5; }
+
+/* Process */
+.demo-process { display: flex; flex-direction: column; max-width: 450px; }
+.demo-process-step { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid #f0f0f0; }
+.demo-process-step:first-child { padding-top: 0; }
+.demo-process-step:last-child  { border-bottom: none; }
+.demo-process-num  { font-size: 11px; letter-spacing: 0.1em; color: #bbb; text-transform: uppercase; min-width: 24px; padding-top: 4px; }
+.demo-process-body h3 { font-size: 20px; font-weight: 500; color: #111; margin-bottom: 6px; }
+.demo-process-body p  { font-size: 15px; color: #535353; line-height: 1.5; }
+
+/* Price card */
+.demo-price { border: 1px solid #e8e8e8; border-radius: 20px; overflow: hidden; max-width: 450px; background: #fff; }
+.demo-price-row { display: flex; align-items: center; padding: 16px 22px; border-bottom: 1px solid #f0f0f0; font-size: 16px; }
+.demo-price-row:last-child { border-bottom: none; }
+.demo-price-label { flex: 1; color: #535353; }
+.demo-price-value { font-weight: 500; color: #111; }
+
+/* FAQ */
+.demo-faq { max-width: 450px; }
+.demo-faq-item { border-bottom: 1px solid #f0f0f0; }
+.demo-faq-item:first-child { border-top: 1px solid #f0f0f0; }
+.demo-faq-q { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; font-size: 17px; font-weight: 500; color: #111; }
+.demo-faq-ico { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #ddd; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #aaa; font-size: 16px; }
+.demo-faq-ico.open { border-color: #111; color: #111; transform: rotate(45deg); }
+.demo-faq-a { padding-bottom: 16px; font-size: 16px; color: #535353; line-height: 1.6; }
+
+/* Mid CTA */
+.demo-mid-cta {
+  background: #141414; border-radius: 24px; padding: 40px 32px;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  text-align: center; max-width: 450px;
+}
+.demo-mid-cta-title { font-size: 28px; font-weight: 700; color: #fff; line-height: 1.1; letter-spacing: -0.025em; }
+
+/* Final CTA */
+.demo-final-cta {
+  background: #141414; border-radius: 28px; padding: 56px 40px;
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+  text-align: center; max-width: 450px;
+}
+.demo-cta-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(34,168,74,0.15); color: #22A84A;
+  font-size: 13px; font-weight: 500; padding: 7px 16px 7px 10px; border-radius: 100px;
+}
+.demo-cta-title { font-size: 32px; font-weight: 700; color: #fff; line-height: 1.1; letter-spacing: -0.025em; }
+.demo-cta-sub   { font-size: 15px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+.demo-cta-btn {
+  display: block; width: 100%; padding: 20px 28px;
+  background: #fff; border-radius: 16px;
+  font-family: inherit; font-size: 16px; font-weight: 500; color: #111;
+  text-align: center;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.3);
+}
+.demo-cta-hints { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+/* Form */
+.demo-form { max-width: 450px; display: flex; flex-direction: column; gap: 4px; }
+.demo-field {
+  display: block; width: 100%; background: none; border: none;
+  border-bottom: 1px solid #e0e0e0; color: #111;
+  font-family: inherit; font-size: 16px; padding: 14px 0; outline: none;
+}
+.demo-field::placeholder { color: #bbb; }
+.demo-budget { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 0; }
+.demo-budget-chip { padding: 10px 14px; border-radius: 10px; border: 1px solid #e0e0e0; font-size: 14px; color: #555; }
+.demo-budget-chip.on { border-color: #111; color: #111; }
+.demo-submit { width: 100%; margin-top: 8px; padding: 16px; background: #fff; border: 1px solid #e0e0e0; border-radius: 14px; font-family: inherit; font-size: 16px; font-weight: 500; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="kit-page">
+
+  <!-- HEADER -->
+  <div class="kit-header">
+    <div class="kit-header-label">UI Kit</div>
+    <div class="kit-header-title">Нокнок — дизайн-система</div>
+    <div class="kit-header-meta">Апрель 2026 · styles/main.css · components/navbar.js · hero.js · reviews.js</div>
+  </div>
+
+  <!-- DESIGN TOKENS -->
+  <div class="kit-section">
+    <div class="kit-section-title">Дизайн-токены · :root в styles/main.css</div>
+    <div class="tokens-grid">
+      <div class="token-row"><span class="token-name">--font</span><span class="token-value">TT Hoves Pro Condensed</span></div>
+      <div class="token-row"><span class="token-name">--fs-hero</span><span class="token-value">clamp(32px, 5vw, 56px)</span></div>
+      <div class="token-row"><span class="token-name">--fs-cta</span><span class="token-value">clamp(28px, 4vw, 44px)</span></div>
+      <div class="token-row"><span class="token-name">--fs-h2</span><span class="token-value">36px</span></div>
+      <div class="token-row"><span class="token-name">--fs-h3</span><span class="token-value">22px</span></div>
+      <div class="token-row"><span class="token-name">--fs-body</span><span class="token-value">18px</span></div>
+      <div class="token-row"><span class="token-name">--fs-ui</span><span class="token-value">17px</span></div>
+      <div class="token-row"><span class="token-name">--fs-small</span><span class="token-value">14px</span></div>
+      <div class="token-row"><span class="token-name">--fs-label</span><span class="token-value">11px · uppercase · ls 0.12em</span></div>
+      <div class="token-row"><span class="token-name">--lh-body</span><span class="token-value">1.65</span></div>
+      <div class="token-row"><span class="token-name">--lh-heading</span><span class="token-value">1.1</span></div>
+      <div class="token-row"><span class="token-name">--ls-tight</span><span class="token-value">−0.025em</span></div>
+      <div class="token-row"><span class="token-name">--ls-tighter</span><span class="token-value">−0.015em</span></div>
+      <div class="token-row"><span class="token-name">--c-ink</span><span class="token-value">#111</span></div>
+      <div class="token-row"><span class="token-name">--c-ink-2</span><span class="token-value">#535353</span></div>
+      <div class="token-row"><span class="token-name">--c-ink-3</span><span class="token-value">#aaa</span></div>
+      <div class="token-row"><span class="token-name">--c-border</span><span class="token-value">#e8e8e8</span></div>
+      <div class="token-row"><span class="token-name">--c-bg</span><span class="token-value">#fff</span></div>
+      <div class="token-row"><span class="token-name">--c-bg-alt</span><span class="token-value">#f7f7f7</span></div>
+      <div class="token-row"><span class="token-name">--c-dark</span><span class="token-value">#141414</span></div>
+      <div class="token-row"><span class="token-name">--c-accent</span><span class="token-value">#22A84A</span></div>
+      <div class="token-row"><span class="token-name">--w</span><span class="token-value">450px</span></div>
+      <div class="token-row"><span class="token-name">--section-v</span><span class="token-value">80px</span></div>
+      <div class="token-row"><span class="token-name">--r-card</span><span class="token-value">20px</span></div>
+      <div class="token-row"><span class="token-name">--r-btn</span><span class="token-value">16px</span></div>
+      <div class="token-row"><span class="token-name">--r-cta</span><span class="token-value">28px</span></div>
+    </div>
+  </div>
+
+  <!-- COLORS -->
+  <div class="kit-section">
+    <div class="kit-section-title">Палитра</div>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-box" style="background:#111;"></div>
+        <div class="swatch-var">--c-ink</div>
+        <div class="swatch-hex">#111111</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:#535353;"></div>
+        <div class="swatch-var">--c-ink-2</div>
+        <div class="swatch-hex">#535353</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:#aaa;"></div>
+        <div class="swatch-var">--c-ink-3</div>
+        <div class="swatch-hex">#aaaaaa</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:#e8e8e8;"></div>
+        <div class="swatch-var">--c-border</div>
+        <div class="swatch-hex">#e8e8e8</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:#fff; border:1px solid #ddd;"></div>
+        <div class="swatch-var">--c-bg</div>
+        <div class="swatch-hex">#ffffff</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:#f7f7f7; border:1px solid #ddd;"></div>
+        <div class="swatch-var">--c-bg-alt</div>
+        <div class="swatch-hex">#f7f7f7</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:#141414;"></div>
+        <div class="swatch-var">--c-dark</div>
+        <div class="swatch-hex">#141414</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:#0d0d0d;"></div>
+        <div class="swatch-var">hero bg</div>
+        <div class="swatch-hex">#0d0d0d</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:#262626;"></div>
+        <div class="swatch-var">progress fill</div>
+        <div class="swatch-hex">#262626</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:#22A84A;"></div>
+        <div class="swatch-var">--c-accent</div>
+        <div class="swatch-hex">#22A84A</div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-box" style="background:rgba(34,168,74,0.15); border:1px solid #ddd;"></div>
+        <div class="swatch-var">--c-accent-bg</div>
+        <div class="swatch-hex">rgba(34,168,74,.15)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RADIUS -->
+  <div class="kit-section">
+    <div class="kit-section-title">Скругления</div>
+    <div class="radius-row">
+      <div class="radius-box">
+        <div class="radius-shape" style="border-radius: 10px;"></div>
+        <div class="radius-label">10px<br>бюджет-чип</div>
+      </div>
+      <div class="radius-box">
+        <div class="radius-shape" style="border-radius: 12px;"></div>
+        <div class="radius-label">12px<br>callout</div>
+      </div>
+      <div class="radius-box">
+        <div class="radius-shape" style="border-radius: 14px;"></div>
+        <div class="radius-label">14px<br>review avatar</div>
+      </div>
+      <div class="radius-box">
+        <div class="radius-shape" style="border-radius: var(--r-card);"></div>
+        <div class="radius-label">--r-card 20px<br>карточки</div>
+      </div>
+      <div class="radius-box">
+        <div class="radius-shape" style="border-radius: 24px;"></div>
+        <div class="radius-label">24px<br>review card</div>
+      </div>
+      <div class="radius-box">
+        <div class="radius-shape" style="border-radius: var(--r-btn);"></div>
+        <div class="radius-label">--r-btn 16px<br>кнопки</div>
+      </div>
+      <div class="radius-box">
+        <div class="radius-shape" style="border-radius: var(--r-cta);"></div>
+        <div class="radius-label">--r-cta 28px<br>CTA блок</div>
+      </div>
+      <div class="radius-box">
+        <div class="radius-shape" style="border-radius: 100px;"></div>
+        <div class="radius-label">100px<br>пилюли/теги</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="kit-section">
+    <div class="kit-section-title">Типографика</div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Hero</div>
+        <div class="kit-var">--fs-hero<br>--ls-tight<br>font-weight: 700</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-hero">
+          <div class="demo-hero-content">
+            <div class="demo-hero-title">Делаем интерфейсы,<br>которые растят продукт</div>
+            <div class="demo-hero-meta">
+              <div class="demo-hero-avatar"></div>
+              <span class="demo-hero-author">Анна Климова</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">H2 — Раздел</div>
+        <div class="kit-var">--fs-h2: 36px<br>--ls-tight<br>--lh-heading</div>
+      </div>
+      <div class="kit-demo">
+        <div style="font-size:36px;font-weight:500;line-height:1.1;letter-spacing:-0.025em;color:#111;">Почему фото решает всё</div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">H3 — Подраздел</div>
+        <div class="kit-var">--fs-h3: 22px<br>--ls-tighter<br>--lh-tight</div>
+      </div>
+      <div class="kit-demo">
+        <div style="font-size:22px;font-weight:500;line-height:1.2;letter-spacing:-0.015em;color:#111;">Проблема традиционного подхода</div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Body</div>
+        <div class="kit-var">--fs-body: 18px<br>--lh-body: 1.65<br>--c-ink-2</div>
+      </div>
+      <div class="kit-demo">
+        <div style="font-size:18px;line-height:1.65;color:#535353;max-width:450px;">Исследования показывают, что качество изображения влияет на конверсию сильнее, чем описание товара или цена. Покупатель принимает решение в первые три секунды.</div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Label / Метка</div>
+        <div class="kit-var">--fs-label: 11px<br>--ls-label: 0.12em<br>uppercase · --c-ink-3</div>
+      </div>
+      <div class="kit-demo">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#aaa;">Портфолио</div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Бренд</div>
+        <div class="kit-var">28px · font-weight 700<br>Главная / Раздел</div>
+      </div>
+      <div class="kit-demo" style="display:flex;flex-direction:column;gap:12px;">
+        <div class="demo-brand"><span class="b-main">Нокнок</span></div>
+        <div class="demo-brand"><span class="b-main">Нокнок</span><span class="b-sep">&nbsp;:&nbsp;</span><span class="b-sub">Портфолио</span></div>
+        <div class="demo-brand-dark">
+          <div class="demo-brand"><span class="b-main">Нокнок</span><span class="b-sep">&nbsp;:&nbsp;</span><span class="b-sub">Услуги</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Цитата (блог)</div>
+        <div class="kit-var">20px · italic<br>border-left 2px --c-ink</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-blockquote">Каталог — это витрина. Если витрина выглядит дёшево, покупатель идёт дальше.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NAVIGATION -->
+  <div class="kit-section">
+    <div class="kit-section-title">Навигация · components/navbar.js</div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Navbar — default</div>
+        <div class="kit-var">450px · h 56px<br>br 18px · bg #000</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-navbar">
+          <div class="demo-navbar-menu">Меню</div>
+          <div class="demo-navbar-cta">Заявка</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Navbar — прогресс 55%</div>
+        <div class="kit-var">CSS var --scroll<br>fill #262626</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-navbar-progress">
+          <div class="demo-navbar-menu">Меню</div>
+          <div class="demo-navbar-cta">Заявка</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Боковое содержание (блог)</div>
+        <div class="kit-var">16px · border 1.5px<br>Активный: --c-ink<br>Неактивный: --c-ink-3</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-toc">
+          <div class="demo-toc-pill on">Почему фото решает всё</div>
+          <div class="demo-toc-pill">Традиционный подход</div>
+          <div class="demo-toc-pill">Что изменилось с AI</div>
+          <div class="demo-toc-pill">Как это работает</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="kit-section">
+    <div class="kit-section-title">Кнопки</div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">.btn-primary</div>
+        <div class="kit-var">bg --c-ink<br>--fs-body · --r-btn</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-buttons">
+          <a class="btn-primary" href="#" style="text-decoration:none;">Обсудить аудит</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">.btn-light</div>
+        <div class="kit-var">bg --c-bg<br>--fs-ui · --r-btn</div>
+      </div>
+      <div class="kit-demo" style="background:#141414;padding:20px;border-radius:16px;display:inline-block;">
+        <button class="btn-light">Обсудить аудит</button>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">.cta-btn / .cta-card</div>
+        <div class="kit-var">bg #fff · shadow<br>box-shadow 3D</div>
+      </div>
+      <div class="kit-demo" style="background:#141414;padding:20px;border-radius:16px;max-width:300px;">
+        <button class="cta-btn" style="font-family:inherit;">Оставить заявку</button>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Бейдж / .cta-badge</div>
+        <div class="kit-var">--c-accent · --c-accent-bg<br>br 100px</div>
+      </div>
+      <div class="kit-demo" style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div class="cta-badge">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="#22A84A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          бесплатно
+        </div>
+        <div class="cta-badge">UX/UI аудит</div>
+        <div class="cta-tag">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="#22A84A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          .cta-tag
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CARDS -->
+  <div class="kit-section">
+    <div class="kit-section-title">Карточки</div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Услуга</div>
+        <div class="kit-var">2×2 grid · --r-card<br>border --c-border<br>gap 36px</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-service-grid">
+          <div class="demo-service-card">
+            <span class="demo-service-title">Дизайн интерфейса</span>
+            <svg class="demo-service-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 16L16 4M16 4H8M16 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="demo-service-card">
+            <span class="demo-service-title">UX/UI аудит</span>
+            <svg class="demo-service-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 16L16 4M16 4H8M16 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Портфолио</div>
+        <div class="kit-var">img 220px · --r-card<br>border --c-border</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-portfolio">
+          <div class="demo-portfolio-img"></div>
+          <div class="demo-portfolio-body">
+            <div>
+              <div class="demo-portfolio-tag">Брендинг · Интерфейсы</div>
+              <div class="demo-portfolio-title">Урбика — путеводитель по городу</div>
+            </div>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;color:#ccc;"><path d="M4 16L16 4M16 4H8M16 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Отзыв (слайдер)</div>
+        <div class="kit-var">components/reviews.js<br>br 24px · min-h 480px<br>border --c-border</div>
+      </div>
+      <div class="kit-demo">
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div class="demo-review">
+            <p class="demo-review-quote">Работать с ними было действительно приятно: максимальная гибкость в формате взаимодействия, чёткое соблюдение договорённостей.</p>
+            <div class="demo-review-author">
+              <div class="demo-review-avatar"></div>
+              <div>
+                <div class="demo-review-name">Павел Брохин</div>
+                <div class="demo-review-role">Head of Design</div>
+              </div>
+            </div>
+          </div>
+          <div class="demo-review-dots" style="justify-content:center;margin-top:16px;">
+            <div class="demo-dot on"></div>
+            <div class="demo-dot"></div>
+            <div class="demo-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Прайс</div>
+        <div class="kit-var">--r-card · border --c-border<br>divider #f0f0f0</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-price">
+          <div class="demo-price-row"><span class="demo-price-label">Срок</span><span class="demo-price-value">5–7 рабочих дней</span></div>
+          <div class="demo-price-row"><span class="demo-price-label">Стоимость</span><span class="demo-price-value">от 100 000 ₽</span></div>
+          <div class="demo-price-row"><span class="demo-price-label">Оплата</span><span class="demo-price-value">50% + 50%</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONTENT ELEMENTS -->
+  <div class="kit-section">
+    <div class="kit-section-title">Контентные элементы</div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">.bullet-list</div>
+        <div class="kit-var">--fs-body · --c-ink-2<br>dot 5px · gap 14px</div>
+      </div>
+      <div class="kit-demo">
+        <ul class="bullet-list" style="max-width:450px;">
+          <li>Высокая стоимость аренды студии и команды</li>
+          <li>Долгий цикл — от брифа до финальных файлов 2–3 недели</li>
+          <li>Зависимость от расписания моделей и фотографов</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Подсказка (.callout)</div>
+        <div class="kit-var">bg --c-bg-alt · br 12px<br>16px · --c-ink-2</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-callout">
+          <span style="font-size:15px;flex-shrink:0;">💡</span>
+          <span>Средняя экономия на пересъёмке каталога из 200 позиций составляет 85%.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Шаги процесса</div>
+        <div class="kit-var">num 11px · --c-ink-3<br>divider #f0f0f0</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-process">
+          <div class="demo-process-step">
+            <div class="demo-process-num">01</div>
+            <div class="demo-process-body"><h3>Заявка на сайте</h3><p>Оставляете заявку — мы напишем в течение дня.</p></div>
+          </div>
+          <div class="demo-process-step">
+            <div class="demo-process-num">02</div>
+            <div class="demo-process-body"><h3>Звонок на 30 минут</h3><p>Узнаём цели продукта и ключевые задачи.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">FAQ аккордеон</div>
+        <div class="kit-var">--fs-body · divider #f0f0f0<br>иконка br 50% · rotate 45°</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-faq">
+          <div class="demo-faq-item">
+            <div class="demo-faq-q">
+              <span>Что нужно, чтобы начать?</span>
+              <div class="demo-faq-ico open">+</div>
+            </div>
+            <div class="demo-faq-a">Написать нам и коротко рассказать о продукте. Никаких брифов на старте не нужно.</div>
+          </div>
+          <div class="demo-faq-item">
+            <div class="demo-faq-q">
+              <span>Сколько длится работа?</span>
+              <div class="demo-faq-ico">+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOGOS & TAGS -->
+  <div class="kit-section">
+    <div class="kit-section-title">Логотипы и теги</div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">.logo-pill</div>
+        <div class="kit-var">14px · --c-ink-3<br>border --c-border · br 100px</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-logos">
+          <span class="demo-logo-pill">Mango Proxy</span>
+          <span class="demo-logo-pill">LaborX</span>
+          <span class="demo-logo-pill">WakeUp</span>
+          <span class="demo-logo-pill">GeekBrains</span>
+          <span class="demo-logo-pill">Burda</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">.expertise-tag</div>
+        <div class="kit-var">14px · #555<br>border --c-border · br 100px</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-tags">
+          <span class="demo-tag">E-commerce</span>
+          <span class="demo-tag">EdTech</span>
+          <span class="demo-tag">AutoTech</span>
+          <span class="demo-tag">Foodtech</span>
+          <span class="demo-tag">Web3</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA BLOCKS -->
+  <div class="kit-section">
+    <div class="kit-section-title">CTA-блоки</div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Mid CTA</div>
+        <div class="kit-var">bg --c-dark · br 24px<br>padding 56px 40px</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-mid-cta">
+          <div class="demo-mid-cta-title">Разберём ваш продукт в мае</div>
+          <button class="btn-light" style="font-family:inherit;">Обсудить аудит</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Final CTA</div>
+        <div class="kit-var">bg --c-dark · --r-cta<br>padding 80px 40px<br>.cta-inner · .final-cta</div>
+      </div>
+      <div class="kit-demo">
+        <div class="demo-final-cta">
+          <div class="demo-cta-badge">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="#22A84A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            бесплатно
+          </div>
+          <div class="demo-cta-title">Обсудим ваш проект?</div>
+          <div class="demo-cta-sub">Расскажите о задаче — ответим в течение дня.</div>
+          <div class="demo-cta-btn">Оставить заявку</div>
+          <div class="demo-cta-hints">Бесплатная консультация · Без обязательств</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FORM -->
+  <div class="kit-section">
+    <div class="kit-section-title">Форма · components/navbar.js (formdrop)</div>
+
+    <div class="kit-row">
+      <div class="kit-meta">
+        <div class="kit-name">Поля формы</div>
+        <div class="kit-var">border-bottom 1px<br>16px · bg none<br>placeholder --c-ink-3</div>
+      </div>
+      <div class="kit-demo" style="background:#000;padding:24px;border-radius:18px;max-width:450px;">
+        <div class="demo-form">
+          <input class="demo-field" type="text" placeholder="Ваше имя" style="color:#fff;border-bottom-color:#333;">
+          <input class="demo-field" type="email" placeholder="Email" style="color:#fff;border-bottom-color:#333;">
+          <div class="demo-budget">
+            <div class="demo-budget-chip on">до 500 т.р.</div>
+            <div class="demo-budget-chip">500 т.р. — 1 млн</div>
+            <div class="demo-budget-chip">1 — 3 млн</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>

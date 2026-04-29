@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UX/UI аудит — Нокнок</title>
+<link rel="stylesheet" href="styles/main.css">
+<style>
+/* ─── ВРЕМЕННАЯ МЕТКА ─── */
+.timeline-tag { display: inline-flex; align-items: center; gap: 7px; font-size: var(--fs-label); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--c-accent); margin-bottom: 20px; }
+.timeline-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--c-accent); }
+
+/* ─── ПРАЙС ─── */
+.price-card { border: 1px solid var(--c-border); border-radius: var(--r-card); overflow: hidden; margin-bottom: 28px; }
+.price-row  { display: flex; align-items: center; padding: 18px 24px; border-bottom: 1px solid #f0f0f0; }
+.price-row:last-child { border-bottom: none; }
+.price-label { font-size: var(--fs-ui); color: var(--c-ink-2); flex: 1; }
+.price-value { font-size: var(--fs-ui); font-weight: 500; color: var(--c-ink); }
+
+/* ─── ПРОЦЕСС ─── */
+.process-list { display: flex; flex-direction: column; }
+.process-step { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid #f0f0f0; }
+.process-step:first-child { padding-top: 0; }
+.process-step:last-child  { border-bottom: none; }
+.process-num { font-size: var(--fs-label); letter-spacing: 0.1em; color: #bbb; text-transform: uppercase; min-width: 28px; padding-top: 4px; }
+.process-body h3 { font-size: var(--fs-h3); font-weight: 500; letter-spacing: var(--ls-tighter); color: var(--c-ink); line-height: var(--lh-tight); margin-bottom: 8px; }
+.process-body p  { font-size: var(--fs-ui); line-height: 1.55; color: var(--c-ink-2); }
+
+/* ─── КЕЙС ─── */
+.case-card  { border: 1px solid var(--c-border); border-radius: var(--r-card); overflow: hidden; }
+.case-img   { width: 100%; height: 220px; background: var(--c-border); }
+.case-body  { padding: 28px; }
+.case-tag   { font-size: var(--fs-label); letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-ink-3); margin-bottom: 14px; }
+.case-title { font-size: 24px; font-weight: 500; letter-spacing: -0.02em; color: var(--c-ink); line-height: var(--lh-tight); margin-bottom: 14px; }
+.case-text  { font-size: 16px; line-height: 1.6; color: var(--c-ink-2); }
+
+/* ─── MID CTA ─── */
+.cta-mid-section {
+  padding: 0 var(--outer) 80px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gap);
+}
+.cta-mid { grid-column: 5 / 9; background: var(--c-dark); border-radius: 24px; padding: 56px 40px; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; }
+.cta-mid-title { font-size: 34px; font-weight: 700; color: var(--c-bg); line-height: var(--lh-heading); letter-spacing: var(--ls-tight); }
+
+/* ─── FAQ ─── */
+.faq-list { display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1px solid #f0f0f0; }
+.faq-item:first-child { border-top: 1px solid #f0f0f0; }
+.faq-q { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; cursor: pointer; font-size: var(--fs-body); font-weight: 500; color: var(--c-ink); line-height: 1.3; }
+.faq-ico { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #ddd; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--c-ink-3); font-size: 16px; transition: transform 0.25s, border-color 0.2s, color 0.2s; }
+.faq-item.open .faq-ico { transform: rotate(45deg); border-color: var(--c-ink); color: var(--c-ink); }
+.faq-a { overflow: hidden; max-height: 0; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1); }
+.faq-a-inner { padding: 0 0 20px; font-size: var(--fs-ui); line-height: var(--lh-body); color: var(--c-ink-2); }
+.faq-item.open .faq-a { max-height: 400px; }
+</style>
+</head>
+<body>
+
+<!-- hero-root is replaced by renderHero() -->
+<div id="hero-root"></div>
+
+<!-- LOGOS -->
+<div class="section">
+  <div class="container">
+    <div class="logos-grid">
+      <span class="logo-pill">Mango Proxy</span>
+      <span class="logo-pill">Россия — Моя история</span>
+      <span class="logo-pill">LaborX</span>
+      <span class="logo-pill">WakeUp</span>
+      <span class="logo-pill">SteadyControl</span>
+      <span class="logo-pill">Burda</span>
+      <span class="logo-pill">Tiggy</span>
+      <span class="logo-pill">Атлас</span>
+      <span class="logo-pill">Startoria</span>
+      <span class="logo-pill">CoFresh</span>
+      <span class="logo-pill">GeekBrains</span>
+      <span class="logo-pill">Appruvo</span>
+    </div>
+  </div>
+</div>
+
+<!-- FIT -->
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Вам подойдёт этот формат, если…</h2>
+    <ul class="bullet-list">
+      <li>Непонятно, что именно улучшать — нужен свежий взгляд со стороны</li>
+      <li>Ощущение, что продукт устарел и начинает проигрывать конкурентам</li>
+      <li>Непонятно, с чего начать — хочется увидеть направление до того, как вкладывать деньги</li>
+      <li>Нужен документ, который можно взять в работу команде или показать инвесторам</li>
+    </ul>
+  </div>
+</div>
+
+<!-- DELIVERABLES -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">Что вы получите</h2>
+    <div class="timeline-tag">через 5–7 дней</div>
+    <ul class="bullet-list">
+      <li>Разбор интерфейса — что работает не так и почему</li>
+      <li>Анализ конкурентов — как ваш продукт выглядит на их фоне</li>
+      <li>Приоритеты: что исправить в первую очередь, что второстепенно</li>
+      <li>Идеи как усилить продукт — конкретные направления улучшений</li>
+      <li>Рекомендации по следующим шагам и форматам работы</li>
+      <li>Встреча с командой после презентации — отвечаем на вопросы и уточняем детали</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Стоимость и сроки</h2>
+    <div class="price-card">
+      <div class="price-row"><span class="price-label">Срок</span><span class="price-value">5–7 рабочих дней</span></div>
+      <div class="price-row"><span class="price-label">Стоимость</span><span class="price-value">от 100 000 ₽</span></div>
+      <div class="price-row"><span class="price-label">Формат</span><span class="price-value">Презентация + встреча с командой</span></div>
+      <div class="price-row"><span class="price-label">Оплата</span><span class="price-value">50% предоплата, 50% после</span></div>
+    </div>
+    <a class="btn-primary" href="#" onclick="openForm();return false;">Обсудить аудит</a>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">Как это работает</h2>
+    <div class="process-list">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <div class="process-body"><h3>Заявка на сайте</h3><p>Оставляете заявку — мы напишем в течение дня, чтобы договориться о звонке.</p></div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <div class="process-body"><h3>Звонок на 30 минут</h3><p>Узнаём цели продукта, аудиторию и ключевые задачи.</p></div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <div class="process-body"><h3>Дизайн-аудит и разбор</h3><p>Изучаем продукт, ищем точки роста и готовим презентацию с рекомендациями.</p></div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <div class="process-body"><h3>Получаете результат через 5–7 дней</h3><p>Присылаем презентацию с разбором и проводим встречу с командой для обсуждения.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASES -->
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Разборы прошлых месяцев</h2>
+    <div class="case-card">
+      <div class="case-img"></div>
+      <div class="case-body">
+        <div class="case-tag">Разбор в марте · AI · E-commerce</div>
+        <h3 class="case-title">Как превратить AI-чат из игрушки в инструмент продаж</h3>
+        <p class="case-text">Сейчас AI-ассистенты появляются почти в каждом e-commerce продукте, но чаще остаются «игрушкой» на один раз. Чтобы это был не просто чат, а реальный инструмент, он должен помогать принимать решение и сокращать путь до покупки.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MID CTA -->
+<div class="cta-mid-section">
+  <div class="cta-mid">
+    <h2 class="cta-mid-title">Разберём ваш продукт в мае</h2>
+    <button class="btn-light" onclick="openForm()">Обсудить аудит</button>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="section" id="reviews-root"></div>
+
+<!-- ABOUT -->
+<div class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">О нас</h2>
+    <p class="about-text">Мы — дизайн-агентство, специализирующееся на продуктовом дизайне. Помогаем цифровым продуктам расти за счёт сильного интерфейса: снижать стоимость привлечения, выделяться среди конкурентов, повышать удержание и LTV.</p>
+    <div class="section-label">Мы эксперты в сферах</div>
+    <div class="expertise-tags">
+      <span class="expertise-tag">E-commerce</span>
+      <span class="expertise-tag">EdTech</span>
+      <span class="expertise-tag">AutoTech</span>
+      <span class="expertise-tag">Foodtech</span>
+      <span class="expertise-tag">IT</span>
+      <span class="expertise-tag">LMS</span>
+      <span class="expertise-tag">CRM</span>
+      <span class="expertise-tag">Web3</span>
+      <span class="expertise-tag">НКО</span>
+    </div>
+    <div class="ratings-row">
+      <span class="rating-item"><strong>5.0</strong> · рейтинг</span>
+      <span class="rating-item"><strong>4.9</strong> · рейтинг</span>
+      <span class="rating-item"><strong>Топ 5</strong> агентств</span>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">Частые вопросы</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Почему от 100 000 ₽?</span><span class="faq-ico">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Аудит занимает один спринт — около 40 часов работы команды. За это время мы разбираем весь продукт, анализируем конкурентов и готовим детальную презентацию. Это не поверхностный чек-лист, а полноценный документ который можно взять в работу.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Что нужно, чтобы начать?</span><span class="faq-ico">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Написать нам и коротко рассказать о продукте и задаче. Никаких брифов и ТЗ на старте не нужно — всё уточним на звонке.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Что именно вы отдаёте?</span><span class="faq-ico">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Детальную презентацию с разбором всех экранов, аннотациями, анализом конкурентов и приоритетами. Плюс встреча с командой для обсуждения результатов.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Сколько длится работа?</span><span class="faq-ico">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">5–7 рабочих дней от первого звонка до презентации.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Есть ли гарантии?</span><span class="faq-ico">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Мы несём ответственность за качество разбора — если что-то будет непонятно или неполно, доработаем. На встрече отвечаем на все вопросы команды.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Можно ли продолжить работу после аудита?</span><span class="faq-ico">+</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. Аудит часто становится первым этапом перед редизайном или проектированием. Если захотите продолжить — предложим форматы и стоимость.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="cta-inner">
+    <div class="cta-badge">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M2 12L12 2M12 2H5M12 2V9" stroke="#22A84A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      UX/UI аудит
+    </div>
+    <h2 class="cta-title">Готовы разобраться что мешает продукту?</h2>
+    <p class="cta-sub">Проведём дизайн-аудит и через 5–7 дней пришлём презентацию с разбором, точками роста и рекомендациями по следующим шагам.</p>
+    <button class="cta-btn" onclick="openForm()">Обсудить аудит</button>
+    <div class="cta-hints">5–7 дней · от 100 000 ₽ · Без скрытых условий</div>
+  </div>
+</div>
+
+<script>window.BRAND_SUB = 'Услуги';</script>
+<script src="components/navbar.js"></script>
+<script src="components/hero.js"></script>
+<script src="components/reviews.js"></script>
+<script>
+renderReviews('reviews-root', { title: 'Отзывы' });
+
+renderHero({
+  title: 'Улучшим интерфейс цифрового продукта',
+  meta: 'UX/UI аудит'
+});
+
+const hero    = document.getElementById('hero');
+const leftnav = document.getElementById('leftnav');
+const copy    = document.getElementById('copyright');
+const topnav  = document.getElementById('topnav');
+
+function onScroll() {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
+  topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
+  const pastHero = window.scrollY > hero.offsetHeight * 0.85;
+  leftnav.classList.toggle('dark', pastHero);
+  copy.classList.toggle('dark', pastHero);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вакансии — Нокнок</title>
+<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<div id="hero-root"></div>
+<div class="stub"><div class="container"><p>Страница в разработке.</p></div></div>
+<script>window.BRAND_SUB = 'Дизайнеру';</script>
+<script src="components/navbar.js"></script>
+<script src="components/hero.js"></script>
+<script>
+  renderHero({ title: 'Вакансии' });
+  const hero = document.getElementById('hero');
+  const leftnav = document.getElementById('leftnav');
+  const copy = document.getElementById('copyright');
+  const topnav = document.getElementById('topnav');
+  function onScroll() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
+    topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
+    const pastHero = window.scrollY > hero.offsetHeight * 0.85;
+    leftnav.classList.toggle('dark', pastHero);
+    copy.classList.toggle('dark', pastHero);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>

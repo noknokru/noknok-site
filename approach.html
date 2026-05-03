@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подход — Нокнок</title>
+<link rel="stylesheet" href="styles/main.css">
+<style>
+
+/* ─── БОКОВОЕ МЕНЮ ─── */
+#approach-sidenav {
+  position: fixed;
+  left: var(--outer, 40px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sidenav-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--c-ink-3);
+  text-decoration: none;
+  padding: 6px 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+}
+.sidenav-item:hover { color: var(--c-ink-2); }
+.sidenav-item.active { color: var(--c-ink); }
+
+/* ─── СЕКЦИИ ─── */
+.approach-section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gap);
+  padding: 100px var(--outer);
+}
+.approach-section + .approach-section {
+  border-top: 1px solid var(--c-border);
+}
+.approach-section .container { grid-column: 5 / 9; }
+
+/* ─── ФОРМАТЫ ─── */
+.format-cards { display: flex; flex-direction: column; gap: 10px; }
+.format-card-link {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 32px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-card);
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.format-card-link:hover { border-color: #ccc; background: var(--c-bg-alt); }
+.format-card-body { display: flex; flex-direction: column; gap: 8px; }
+.format-card-name { font-size: 22px; font-weight: 500; color: var(--c-ink); letter-spacing: var(--ls-tighter); }
+.format-card-desc { font-size: var(--fs-ui); color: var(--c-ink-2); line-height: 1.5; }
+.format-card-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; padding-top: 4px; }
+.format-card-price { font-size: var(--fs-ui); font-weight: 500; color: var(--c-ink); white-space: nowrap; }
+.format-card-arrow { font-size: 18px; color: var(--c-ink-3); }
+
+/* ─── ПРИНЦИПЫ ─── */
+.principle-list { display: flex; flex-direction: column; }
+.principle-item { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--c-border); }
+.principle-item:first-child { padding-top: 0; }
+.principle-item:last-child { border-bottom: none; padding-bottom: 0; }
+.principle-num { font-size: var(--fs-label); letter-spacing: 0.1em; color: #bbb; text-transform: uppercase; min-width: 28px; padding-top: 5px; flex-shrink: 0; }
+.principle-body h3 { font-size: var(--fs-h3); font-weight: 500; letter-spacing: var(--ls-tighter); color: var(--c-ink); line-height: var(--lh-tight); margin-bottom: 8px; }
+.principle-body p { font-size: var(--fs-ui); line-height: 1.55; color: var(--c-ink-2); }
+</style>
+</head>
+<body>
+
+<div id="hero-root"></div>
+
+<!-- БОКОВОЕ МЕНЮ -->
+<nav id="approach-sidenav">
+  <a class="sidenav-item" href="approach-brand.html">Бренд и интерфейс</a>
+  <a class="sidenav-item" href="approach-formats.html">Форматы сотрудничества</a>
+</nav>
+
+<!-- БРЕНД И ИНТЕРФЕЙС -->
+<div class="approach-section" id="brand">
+  <div class="container">
+    <div class="section-label">Бренд и интерфейс</div>
+    <h2 class="section-title">Как мы работаем</h2>
+    <div class="principle-list">
+      <div class="principle-item">
+        <div class="principle-num">01</div>
+        <div class="principle-body">
+          <h3>Дизайн начинается с задачи</h3>
+          <p>Прежде чем открыть Figma — разбираемся в продукте, аудитории и цели. Красивое решение которое не работает на задачу — не решение.</p>
+        </div>
+      </div>
+      <div class="principle-item">
+        <div class="principle-num">02</div>
+        <div class="principle-body">
+          <h3>Бренд живёт в интерфейсе</h3>
+          <p>Интерфейс — самая частотная точка контакта с брендом. Мы делаем так чтобы визуальный язык бренда работал там где пользователь проводит время.</p>
+        </div>
+      </div>
+      <div class="principle-item">
+        <div class="principle-num">03</div>
+        <div class="principle-body">
+          <h3>Системность важнее красоты</h3>
+          <p>Отдельный экран может быть красив сам по себе. Но ценность — в системе: когда все элементы продукта говорят одним голосом и масштабируются без потери качества.</p>
+        </div>
+      </div>
+      <div class="principle-item">
+        <div class="principle-num">04</div>
+        <div class="principle-body">
+          <h3>Менеджмент на нашей стороне</h3>
+          <p>Вы ставите задачу — мы берём на себя арт-дирекшн, контроль качества и координацию. Не нужно управлять дизайнерами самостоятельно.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ФОРМАТЫ СОТРУДНИЧЕСТВА -->
+<div class="approach-section" id="formats">
+  <div class="container">
+    <div class="section-label">Форматы сотрудничества</div>
+    <h2 class="section-title">Как работаем</h2>
+    <div class="format-cards">
+      <a class="format-card-link" href="approach-formats.html#fix">
+        <div class="format-card-body">
+          <div class="format-card-name">Фикс</div>
+          <p class="format-card-desc">Для проекта с чётким результатом. Фиксируем объём, сроки и стоимость до старта — в процессе ничего не меняется.</p>
+        </div>
+        <div class="format-card-meta">
+          <div class="format-card-price">2500 ₽/час</div>
+          <div class="format-card-arrow">→</div>
+        </div>
+      </a>
+      <a class="format-card-link" href="approach-formats.html#tm">
+        <div class="format-card-body">
+          <div class="format-card-name">T&M</div>
+          <p class="format-card-desc">Для разовых и срочных задач. Подключаемся быстро, платите за фактически отработанные часы.</p>
+        </div>
+        <div class="format-card-meta">
+          <div class="format-card-price">2000 ₽/час</div>
+          <div class="format-card-arrow">→</div>
+        </div>
+      </a>
+      <a class="format-card-link" href="approach-formats.html#retainer">
+        <div class="format-card-body">
+          <div class="format-card-name">Ретейнер</div>
+          <p class="format-card-desc">Выделенная команда на постоянной основе. Погружаемся в продукт, держим визуальную консистентность и растём вместе с вами.</p>
+        </div>
+        <div class="format-card-meta">
+          <div class="format-card-price">1800 ₽/час</div>
+          <div class="format-card-arrow">→</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>window.BRAND_SUB = 'Подход';</script>
+<script src="components/navbar.js"></script>
+<script src="components/hero.js"></script>
+<script src="components/cta.js"></script>
+<script>
+  renderHero({ title: 'Подход' });
+
+  const hero    = document.getElementById('hero');
+  const leftnav = document.getElementById('leftnav');
+  const copy    = document.getElementById('copyright');
+  const topnav  = document.getElementById('topnav');
+
+  function onScroll() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
+    topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
+    const pastHero = window.scrollY > hero.offsetHeight * 0.85;
+    leftnav.classList.toggle('dark', pastHero);
+    copy.classList.toggle('dark', pastHero);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+</script>
+</body>
+</html>

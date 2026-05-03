@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Форматы сотрудничества — Нокнок</title>
+<link rel="stylesheet" href="styles/main.css">
+<style>
+
+/* ─── БОКОВОЕ МЕНЮ ─── */
+#approach-sidenav {
+  position: fixed;
+  left: var(--outer, 40px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sidenav-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--c-ink-3);
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.2s;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+.sidenav-item:hover { color: var(--c-ink-2); }
+.sidenav-item.active { color: var(--c-ink); }
+
+/* ─── ФОРМАТ-СЕКЦИЯ ─── */
+.format-section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gap);
+  padding: 100px var(--outer);
+  border-top: 1px solid var(--c-border);
+}
+.format-section .container { grid-column: 5 / 9; }
+
+/* ─── ЦЕНА ─── */
+.price-block { display: inline-flex; align-items: baseline; gap: 10px; padding: 20px 28px; border: 1px solid var(--c-border); border-radius: var(--r-card); margin-top: 8px; }
+.price-label { font-size: var(--fs-ui); color: var(--c-ink-2); }
+.price-value { font-size: 28px; font-weight: 600; color: var(--c-ink); letter-spacing: var(--ls-tighter); }
+
+/* ─── ТАБЛИЦА ─── */
+.compare-table { width: 100%; border-collapse: collapse; }
+.compare-table th,
+.compare-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--c-border); font-size: var(--fs-ui); }
+.compare-table th { font-size: var(--fs-label); letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; font-weight: 400; }
+.compare-table td { color: var(--c-ink-2); line-height: 1.4; }
+.compare-table td:first-child { color: var(--c-ink); font-weight: 500; }
+.compare-table tr:last-child td { border-bottom: none; }
+</style>
+</head>
+<body>
+
+<div id="hero-root"></div>
+
+<!-- БОКОВОЕ МЕНЮ -->
+<nav id="approach-sidenav">
+  <a class="sidenav-item" href="approach-brand.html">Бренд и интерфейс</a>
+  <a class="sidenav-item active" href="approach-formats.html">Форматы сотрудничества</a>
+</nav>
+
+<!-- ФИКС -->
+<div class="format-section" id="fix">
+  <div class="container">
+    <div class="section-label">Фикс</div>
+    <h2 class="section-title">Проектная работа с фиксированной стоимостью</h2>
+    <p class="about-text">Для задач где есть понятный результат и можно зафиксировать объём до старта.</p>
+    <ul class="bullet-list" style="margin-bottom: 28px;">
+      <li>MVP или первая версия продукта</li>
+      <li>Продуктовый лендинг</li>
+      <li>Редизайн конкретного раздела или флоу</li>
+      <li>Задача с готовым ТЗ или чётким брифом</li>
+      <li>Проект с фиксированным бюджетом</li>
+    </ul>
+    <p class="about-text">Перед стартом договариваемся что именно делаем, в какие сроки и за какую сумму. В процессе стоимость не меняется — даже если задача оказалась сложнее чем казалось.</p>
+    <p class="about-text">Вы платите за результат, а не за часы которые мы провели в Figma.</p>
+    <div class="section-label" style="margin-top: 32px; margin-bottom: 14px;">Что входит</div>
+    <ul class="bullet-list" style="margin-bottom: 28px;">
+      <li>Персональный менеджер на весь проект</li>
+      <li>Еженедельные отчёты о прогрессе</li>
+      <li>Доступ к макетам с первого дня</li>
+      <li>Фиксированная стоимость без сюрпризов</li>
+    </ul>
+    <p class="about-text">Фикс предполагает чёткий объём. Если в процессе появляются новые задачи — обсуждаем отдельно. Это честно для обеих сторон.</p>
+    <div class="price-block">
+      <span class="price-label">Стоимость часа</span>
+      <span class="price-value">2500 ₽</span>
+    </div>
+  </div>
+</div>
+
+<!-- T&M -->
+<div class="format-section" id="tm">
+  <div class="container">
+    <div class="section-label">T&M</div>
+    <h2 class="section-title">Для разовых и срочных задач</h2>
+    <p class="about-text">Для задач которые появляются нерегулярно или когда объём заранее неизвестен.</p>
+    <ul class="bullet-list" style="margin-bottom: 28px;">
+      <li>Задачи появляются нерегулярно и непредсказуемо</li>
+      <li>Нужно подключиться быстро — без долгого согласования</li>
+      <li>Объём заранее неизвестен</li>
+      <li>Нужен конкретный профиль дизайнера под конкретную задачу</li>
+    </ul>
+    <p class="about-text">Приходите с задачей — мы подключаем нужного специалиста и начинаем. Платите за фактически отработанные часы. Менеджмент и арт-дирекшн наш — вам не нужно управлять дизайнером самостоятельно.</p>
+    <p class="about-text">T&M — самая гибкая модель. И самая высокая стоимость часа: за гибкость и скорость подключения.</p>
+    <div class="section-label" style="margin-top: 32px; margin-bottom: 14px;">Что входит</div>
+    <ul class="bullet-list" style="margin-bottom: 28px;">
+      <li>Прямой доступ к дизайнерам</li>
+      <li>Менеджмент и арт-дирекшн на нашей стороне</li>
+      <li>Разные профили под разные задачи — UI, UX, моушн, брендинг</li>
+      <li>Гибкий объём — больше когда нужно, меньше когда не нужно</li>
+    </ul>
+    <p class="about-text">T&M не подходит для больших проектов с фиксированным бюджетом — там лучше работает Фикс или Ретейнер.</p>
+    <div class="price-block">
+      <span class="price-label">Стоимость часа</span>
+      <span class="price-value">2000 ₽</span>
+    </div>
+  </div>
+</div>
+
+<!-- РЕТЕЙНЕР -->
+<div class="format-section" id="retainer">
+  <div class="container">
+    <div class="section-label">Ретейнер</div>
+    <h2 class="section-title">Выделенная команда</h2>
+    <p class="about-text">Когда дизайн нужен постоянно и важно чтобы команда была погружена в продукт.</p>
+    <ul class="bullet-list" style="margin-bottom: 28px;">
+      <li>Есть постоянная потребность в дизайне</li>
+      <li>Большой объём задач без чёткого ТЗ</li>
+      <li>Нужна команда которая думает вместе с вами</li>
+      <li>Хотите предсказуемый бюджет на дизайн каждый месяц</li>
+    </ul>
+    <p class="about-text">Выделяем команду — дизайнер и лид — которая работает с вами на постоянной основе. Фиксированная оплата в месяц. Менеджмент и арт-дирекшн наш.</p>
+    <p class="about-text">Команда погружается в продукт, знает контекст и не нужно каждый раз объяснять с нуля. Чем дольше работаем — тем быстрее и точнее результат.</p>
+    <div class="section-label" style="margin-top: 32px; margin-bottom: 14px;">Что входит</div>
+    <ul class="bullet-list" style="margin-bottom: 28px;">
+      <li>Выделенная команда: дизайнер и лид</li>
+      <li>Менеджмент и арт-дирекшн на нашей стороне</li>
+      <li>Прямой доступ к команде</li>
+      <li>Фиксированная оплата в месяц</li>
+      <li>Гибкость в задачах — приоритеты можно менять</li>
+    </ul>
+    <p class="about-text">Ретейнер не подходит для разовой задачи с чётким результатом — там лучше работает Фикс.</p>
+    <div class="price-block">
+      <span class="price-label">Стоимость часа</span>
+      <span class="price-value">1800 ₽</span>
+    </div>
+  </div>
+</div>
+
+<!-- СРАВНЕНИЕ -->
+<div class="format-section" id="compare">
+  <div class="container">
+    <div class="section-label">Сравнение форматов</div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Фикс</th>
+          <th>T&M</th>
+          <th>Ретейнер</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Оплата</td>
+          <td>За результат</td>
+          <td>За часы</td>
+          <td>За команду в месяц</td>
+        </tr>
+        <tr>
+          <td>Гибкость</td>
+          <td>Низкая</td>
+          <td>Высокая</td>
+          <td>Высокая</td>
+        </tr>
+        <tr>
+          <td>ТЗ</td>
+          <td>Нужно</td>
+          <td>Не нужно</td>
+          <td>Не нужно</td>
+        </tr>
+        <tr>
+          <td>Подходит для</td>
+          <td>Проекта с границами</td>
+          <td>Разовых и срочных задач</td>
+          <td>Постоянной работы</td>
+        </tr>
+        <tr>
+          <td>Стоимость часа</td>
+          <td>2500 ₽</td>
+          <td>2000 ₽</td>
+          <td>1800 ₽</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>window.BRAND_SUB = 'Подход';</script>
+<script src="components/navbar.js"></script>
+<script src="components/hero.js"></script>
+<script src="components/cta.js"></script>
+<script>
+  renderHero({ title: 'Форматы сотрудничества' });
+
+  const hero     = document.getElementById('hero');
+  const leftnav  = document.getElementById('leftnav');
+  const copy     = document.getElementById('copyright');
+  const topnav   = document.getElementById('topnav');
+  function onScroll() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
+    topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
+
+    const pastHero = window.scrollY > hero.offsetHeight * 0.85;
+    leftnav.classList.toggle('dark', pastHero);
+    copy.classList.toggle('dark', pastHero);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>

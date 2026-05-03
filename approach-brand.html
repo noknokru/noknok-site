@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бренд и интерфейс — Нокнок</title>
+<link rel="stylesheet" href="styles/main.css">
+<style>
+/* ─── БОКОВОЕ МЕНЮ ─── */
+#approach-sidenav {
+  position: fixed;
+  left: var(--outer, 40px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sidenav-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--c-ink-3);
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.2s;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+.sidenav-item:hover { color: var(--c-ink-2); }
+.sidenav-item.active { color: var(--c-ink); }
+</style>
+</head>
+<body>
+
+<div id="hero-root"></div>
+
+<!-- БОКОВОЕ МЕНЮ -->
+<nav id="approach-sidenav">
+  <a class="sidenav-item active" href="approach-brand.html">Бренд и интерфейс</a>
+  <a class="sidenav-item" href="approach-formats.html">Форматы сотрудничества</a>
+</nav>
+
+<!-- ВВОДНЫЙ ТЕКСТ -->
+<div class="section">
+  <div class="container">
+    <p class="about-text">Большинство компаний разделяют брендинг и продуктовый дизайн. Брендинг делает одна команда — она думает про характер, ценности, визуальный язык. Продуктовый дизайн делает другая — она думает про сценарии, компоненты, метрики.</p>
+    <p class="about-text">В результате пользователь видит два разных продукта. Лендинг с характером и душой — и интерфейс который выглядит как все остальные.</p>
+    <p class="about-text">Мы считаем что это разрыв который стоит бизнесу дороже чем кажется.</p>
+    <p class="about-text">Интерфейс — это самая частотная точка контакта пользователя с брендом. Не реклама, не упаковка, не сайт. Именно приложение которое открывают каждый день. Именно там бренд либо живёт — либо нет.</p>
+    <p class="about-text">Поэтому мы проектируем интерфейсы иначе. Не от компонентов и не от паттернов — а от характера бренда. И у нас есть конкретные инструменты чтобы этот характер перенести в продукт.</p>
+  </div>
+</div>
+
+<!-- КАК МЫ СВЯЗЫВАЕМ БРЕНД И ИНТЕРФЕЙС -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Как мы связываем бренд и интерфейс</div>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-body">
+          <h3>Визуальный язык</h3>
+          <p>Цвет, типографика, форма, пространство — это не просто стиль. Это словарь которым бренд говорит с пользователем. Мы берём этот словарь и строим на нём интерфейс — так чтобы продукт был узнаваем без логотипа.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-body">
+          <h3>Микроанимации и поведение элементов</h3>
+          <p>То как кнопка реагирует на нажатие, как экран появляется, как элемент исчезает — это тоже язык бренда. Живой, тёплый, резкий, спокойный — характер читается в движении. Мы проектируем поведение интерфейса как продолжение характера бренда.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-body">
+          <h3>Копирайтинг интерфейса</h3>
+          <p>Тексты кнопок, подсказки, сообщения об ошибках, онбординг — каждое слово это голос бренда. Мы пишем UI-копирайтинг в tone of voice бренда, а не в безликом техническом стиле.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-body">
+          <h3>Фотостиль и иллюстрации</h3>
+          <p>Изображения в интерфейсе формируют ощущение не меньше чем цвет. Мы определяем как должны выглядеть визуальные материалы в продукте — ракурс, свет, атмосфера — и создаём правила для команды.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-body">
+          <h3>Ритм и паузы</h3>
+          <p>Плотность информации, воздух между элементами, скорость с которой страница раскрывается — это ритм бренда. Премиальные бренды дышат медленно. Энергичные — быстро. Мы проектируем ритм осознанно.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-body">
+          <h3>Дизайн-система как носитель бренда</h3>
+          <p>Компонентная библиотека — это не просто инструмент для разработки. Это кодификация визуального языка бренда. Каждый компонент несёт в себе решения которые в сумме дают узнаваемый характер продукта.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ИТОГ -->
+<div class="section">
+  <div class="container">
+    <p class="about-text">Когда все эти слои работают вместе — пользователь не анализирует. Он просто чувствует что продукт свой. Возвращается. Рекомендует.</p>
+    <p class="about-text" style="margin-bottom:0;">Это и есть притяжение которое мы создаём.</p>
+  </div>
+</div>
+
+<script>window.BRAND_SUB = 'Подход';</script>
+<script src="components/navbar.js"></script>
+<script src="components/hero.js"></script>
+<script src="components/cta.js"></script>
+<script>
+  renderHero({ title: 'Бренд живёт в интерфейсе' });
+
+  const hero    = document.getElementById('hero');
+  const leftnav = document.getElementById('leftnav');
+  const copy    = document.getElementById('copyright');
+  const topnav  = document.getElementById('topnav');
+
+  function onScroll() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
+    topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
+    const pastHero = window.scrollY > hero.offsetHeight * 0.85;
+    leftnav.classList.toggle('dark', pastHero);
+    copy.classList.toggle('dark', pastHero);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>

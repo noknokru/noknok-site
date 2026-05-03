@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О нас — Нокнок</title>
+<link rel="stylesheet" href="styles/main.css">
+<style>
+/* ─── ЦЕННОСТИ ─── */
+.values-list { display: flex; flex-direction: column; }
+.value-item { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--c-border); }
+.value-item:first-child { padding-top: 0; }
+.value-item:last-child { border-bottom: none; padding-bottom: 0; }
+.value-name { font-size: var(--fs-h3); font-weight: 500; letter-spacing: var(--ls-tighter); color: var(--c-ink); line-height: var(--lh-tight); min-width: 140px; flex-shrink: 0; }
+.value-desc { font-size: var(--fs-ui); line-height: 1.55; color: var(--c-ink-2); }
+
+/* ─── РЕЙТИНГ ─── */
+.stat-row { display: flex; gap: 40px; margin-top: 32px; }
+.stat-item { display: flex; flex-direction: column; gap: 4px; }
+.stat-value { font-size: 32px; font-weight: 600; color: var(--c-ink); letter-spacing: var(--ls-tighter); }
+.stat-label { font-size: var(--fs-small); color: var(--c-ink-3); }
+</style>
+</head>
+<body>
+
+<div id="hero-root"></div>
+
+<!-- КТО МЫ -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Кто мы</div>
+    <p class="about-text">NokNok — дизайн-студия с 2013 года. Специализируемся на интерфейсах цифровых продуктов где важно не просто работать — но и притягивать.</p>
+    <p class="about-text">За 12 лет сделали больше 150 проектов для компаний в e-commerce, edtech, fintech, autotech, foodtech и web3. Среди клиентов — GeekBrains, Burda, LaborX, SteadyControl, WakeUp и десятки других команд.</p>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-value">150+</div>
+        <div class="stat-label">проектов</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">12 лет</div>
+        <div class="stat-label">на рынке</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">5.0</div>
+        <div class="stat-label">рейтинг, топ-5 студий</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ВО ЧТО МЫ ВЕРИМ -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Во что мы верим</div>
+    <p class="about-text">Дизайн — это сила притяжения. Он формирует эмоциональную связь и превращает пользователей в сторонников бренда.</p>
+    <p class="about-text">Интерфейс — это среда в которой возникает это притяжение. Точка встречи пользователя и бренда. Самая частотная точка контакта — и при этом самая недооценённая.</p>
+    <p class="about-text" style="margin-bottom:0;">Мы работаем с теми для кого дизайн имеет значение. Не как статья расходов — а как инструмент роста и способ выстроить отношения с пользователем.</p>
+  </div>
+</div>
+
+<!-- ЦЕННОСТИ -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Наши ценности</div>
+    <div class="values-list">
+      <div class="value-item">
+        <div class="value-name">Вовлечённость</div>
+        <div class="value-desc">Работаем с теми кому важен результат. Они заинтересованы в нашей работе — и мы искренне отвечаем тем же.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-name">Замысел</div>
+        <div class="value-desc">Каждое решение в интерфейсе должно нести смысл, работать на ощущения и выглядеть эффектно. Красота без логики — декорация. Логика без красоты — инструкция.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-name">Иррациональность</div>
+        <div class="value-desc">Мы ищем нестандартный взгляд на привычные вещи. Лучшие решения редко приходят из очевидного места.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-name">Мера</div>
+        <div class="value-desc">Умение сказать "достаточно" так же важно как умение придумать. Мы не добавляем ради добавления.</div>
+      </div>
+      <div class="value-item">
+        <div class="value-name">Отношения</div>
+        <div class="value-desc">Прозрачность и ясность создают доверие. С клиентами говорим как с коллегами которые нам симпатичны — открыто, с интересом и готовностью делиться опытом.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- КАК МЫ РАБОТАЕМ -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Как мы работаем</div>
+    <p class="about-text">Не поучаем — делимся опытом. Не ставим себя выше или ниже — мы на одном уровне с клиентом. Подготавливая решение, объясняем почему именно так — не потому что так принято, а потому что это помогает команде двигаться дальше.</p>
+    <p class="about-text" style="margin-bottom:0;">Менеджмент и арт-дирекшн всегда на нашей стороне. Клиент работает напрямую с командой — без посредников и испорченного телефона.</p>
+  </div>
+</div>
+
+<!-- ЭКСПЕРТИЗА -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Экспертиза</div>
+    <div class="expertise-tags">
+      <span class="expertise-tag">E-commerce</span>
+      <span class="expertise-tag">EdTech</span>
+      <span class="expertise-tag">AutoTech</span>
+      <span class="expertise-tag">Foodtech</span>
+      <span class="expertise-tag">Fintech</span>
+      <span class="expertise-tag">LMS</span>
+      <span class="expertise-tag">CRM</span>
+      <span class="expertise-tag">Web3</span>
+      <span class="expertise-tag">AI продукты</span>
+    </div>
+  </div>
+</div>
+
+<script>window.BRAND_SUB = '';</script>
+<script src="components/navbar.js"></script>
+<script src="components/hero.js"></script>
+<script src="components/cta.js"></script>
+<script>
+  renderHero({ title: 'О нас' });
+
+  const hero    = document.getElementById('hero');
+  const leftnav = document.getElementById('leftnav');
+  const copy    = document.getElementById('copyright');
+  const topnav  = document.getElementById('topnav');
+
+  function onScroll() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
+    topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
+    const pastHero = window.scrollY > hero.offsetHeight * 0.85;
+    leftnav.classList.toggle('dark', pastHero);
+    copy.classList.toggle('dark', pastHero);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>

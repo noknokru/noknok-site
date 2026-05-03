@@ -12,12 +12,12 @@
 #leftnav.dark .brand-main { color: #111; }
 #leftnav.dark .brand-sep  { color: #bbb; }
 #leftnav.dark .brand-sub  { color: #aaa; }
-#copyright { position: fixed; left: var(--outer, 40px); bottom: 60px; font-size: 12px; color: rgba(255,255,255,0.4); z-index: 300; transition: color 0.3s; }
+#copyright { position: fixed; left: var(--outer, 40px); bottom: 28px; font-size: 12px; color: rgba(255,255,255,0.4); z-index: 300; transition: color 0.3s; }
 #copyright.dark { color: #999; }
-#navwrap { position: fixed; top: 20px; left: calc(var(--outer, 40px) + (100vw - 2 * var(--outer, 40px) - 11 * var(--gap, 20px)) / 3 + 4 * var(--gap, 20px)); width: calc((100vw - 2 * var(--outer, 40px) - 11 * var(--gap, 20px)) / 3 + 3 * var(--gap, 20px)); z-index: 400; display: flex; flex-direction: column; height: 56px; transition: height 0.45s cubic-bezier(0.4,0,0.2,1); }
+#navwrap { position: fixed; bottom: 20px; left: calc(var(--outer, 40px) + (100vw - 2 * var(--outer, 40px) - 11 * var(--gap, 20px)) / 3 + 4 * var(--gap, 20px)); width: calc((100vw - 2 * var(--outer, 40px) - 11 * var(--gap, 20px)) / 3 + 3 * var(--gap, 20px)); z-index: 400; display: flex; flex-direction: column-reverse; height: 56px; transition: height 0.45s cubic-bezier(0.4,0,0.2,1); }
 #navwrap.open { height: calc(100vh - 40px); }
-#topnav { height: 56px; background: linear-gradient(to right, #262626 var(--scroll, 0%), transparent var(--scroll, 0%)), #000; border-radius: 18px; display: flex; align-items: stretch; padding: 5px; position: relative; z-index: 2; }
-#navdrop { background: #000; border-radius: 0 0 18px 18px; overflow: hidden; margin-top: -6px; flex: 1; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+#topnav { height: 56px; background: linear-gradient(to right, #333 var(--scroll, 0%), transparent var(--scroll, 0%)), #1e1e1e; border-radius: 18px; display: flex; align-items: stretch; padding: 5px; position: relative; z-index: 2; }
+#navdrop { background: #1e1e1e; border-radius: 18px 18px 0 0; overflow: hidden; margin-bottom: -6px; flex: 1; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
 #navdrop.on { opacity: 1; pointer-events: all; }
 .drop-inner { padding: 10px 16px 20px; height: 100%; overflow-y: auto; scrollbar-width: none; }
 .drop-inner::-webkit-scrollbar { display: none; }
@@ -27,30 +27,30 @@
 .drop-portfolio { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; }
 .drop-portfolio::-webkit-scrollbar { display: none; }
 .drop-card { text-decoration: none; flex-shrink: 0; width: 200px; }
-.drop-card-img { width: 100%; height: 130px; border-radius: 14px; background: #222; margin-bottom: 10px; }
+.drop-card-img { width: 100%; height: 130px; border-radius: 14px; background: #2a2a2a; margin-bottom: 10px; }
 .drop-card-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 6px; }
 .drop-card-title { font-size: 14px; color: #fff; line-height: 1.3; }
 .drop-grid-1 { display: flex; flex-direction: column; gap: 8px; }
 .drop-grid-1 .drop-btn { justify-content: flex-start; }
 .drop-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .drop-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.drop-btn { display: flex; align-items: center; justify-content: center; padding: 14px 12px; border-radius: 12px; border: 1px solid #222; color: #fff; font-size: 14px; font-weight: 500; text-decoration: none; font-family: inherit; transition: border-color 0.15s, background 0.15s; text-align: center; line-height: 1.2; }
+.drop-btn { display: flex; align-items: center; justify-content: center; padding: 14px 12px; border-radius: 12px; border: 1px solid #2e2e2e; color: #fff; font-size: 14px; font-weight: 500; text-decoration: none; font-family: inherit; transition: border-color 0.15s, background 0.15s; text-align: center; line-height: 1.2; }
 .drop-btn:hover { border-color: #444; background: rgba(255,255,255,0.04); }
 .nav-menu { flex: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; background: none; border: none; font-family: inherit; font-size: 17px; font-weight: 500; color: #fff; letter-spacing: -0.01em; }
-.nav-cta { flex: 1; display: flex; align-items: center; justify-content: center; background: #000; border-radius: 13px; border: 1.5px solid rgba(53,52,57,0.5); font-size: 17px; font-weight: 600; color: #fff; letter-spacing: -0.01em; text-decoration: none; transition: border-color 0.15s; }
-.nav-cta:hover { border-color: rgba(53,52,57,0.9); }
-#formdrop { position: absolute; top: 50px; left: 0; right: 0; bottom: 0; background: #000; border-radius: 0 0 18px 18px; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+.nav-cta { flex: 1; display: flex; align-items: center; justify-content: center; background: #1e1e1e; border-radius: 13px; border: 1.5px solid rgba(70,68,75,0.5); font-size: 17px; font-weight: 600; color: #fff; letter-spacing: -0.01em; text-decoration: none; transition: border-color 0.15s; }
+.nav-cta:hover { border-color: rgba(70,68,75,0.9); }
+#formdrop { position: absolute; bottom: 50px; top: 0; left: 0; right: 0; background: #1e1e1e; border-radius: 18px 18px 0 0; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
 #formdrop.on { opacity: 1; pointer-events: all; }
 .form-inner { padding: 20px 16px 24px; height: 100%; overflow-y: auto; scrollbar-width: none; }
 .form-inner::-webkit-scrollbar { display: none; }
 .form-contacts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px; }
-.form-contact-btn { display: flex; align-items: center; gap: 8px; border: 1px solid #222; border-radius: 12px; padding: 12px 14px; font-size: 14px; color: #fff; text-decoration: none; font-family: inherit; font-weight: 500; transition: border-color 0.15s; }
+.form-contact-btn { display: flex; align-items: center; gap: 8px; border: 1px solid #2e2e2e; border-radius: 12px; padding: 12px 14px; font-size: 14px; color: #fff; text-decoration: none; font-family: inherit; font-weight: 500; transition: border-color 0.15s; }
 .form-contact-btn:hover { border-color: #444; }
-.form-field { display: block; width: 100%; background: none; border: none; border-bottom: 1px solid #222; color: #fff; font-family: inherit; font-size: 16px; padding: 14px 0; outline: none; }
+.form-field { display: block; width: 100%; background: none; border: none; border-bottom: 1px solid #2e2e2e; color: #fff; font-family: inherit; font-size: 16px; padding: 14px 0; outline: none; }
 .form-field::placeholder { color: #444; }
 .form-field:focus { border-bottom-color: #555; }
 textarea.form-field { resize: none; min-height: 144px; }
-.form-file { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px dashed #333; border-radius: 14px; padding: 28px 16px; margin-top: 16px; cursor: pointer; transition: border-color 0.2s, background 0.2s; text-align: center; }
+.form-file { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px dashed #3a3a3a; border-radius: 14px; padding: 28px 16px; margin-top: 16px; cursor: pointer; transition: border-color 0.2s, background 0.2s; text-align: center; }
 .form-file:hover, .form-file.drag-over { border-color: #666; background: rgba(255,255,255,0.03); }
 .form-file input { display: none; }
 .form-file-icon { color: #444; }
@@ -60,12 +60,12 @@ textarea.form-field { resize: none; min-height: 144px; }
 .form-budget { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
 .form-budget-item { cursor: pointer; }
 .form-budget-item input { display: none; }
-.form-budget-item span { display: block; padding: 10px 14px; border-radius: 10px; border: 1px solid #222; font-size: 14px; color: #666; transition: border-color 0.15s, color 0.15s; }
+.form-budget-item span { display: block; padding: 10px 14px; border-radius: 10px; border: 1px solid #2e2e2e; font-size: 14px; color: #666; transition: border-color 0.15s, color 0.15s; }
 .form-budget-item input:checked + span { border-color: #fff; color: #fff; }
 .form-budget-item:hover span { border-color: #444; color: #aaa; }
 .form-consent { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0 0; cursor: pointer; }
 .form-consent input[type=checkbox] { display: none; }
-.form-consent-box { width: 18px; height: 18px; border-radius: 5px; flex-shrink: 0; border: 1px solid #333; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: border-color 0.15s, background 0.15s; }
+.form-consent-box { width: 18px; height: 18px; border-radius: 5px; flex-shrink: 0; border: 1px solid #3a3a3a; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: border-color 0.15s, background 0.15s; }
 .form-consent-box svg { opacity: 0; transition: opacity 0.15s; }
 .form-consent input:checked + .form-consent-box { background: #fff; border-color: #fff; }
 .form-consent input:checked + .form-consent-box svg { opacity: 1; }
@@ -147,6 +147,15 @@ textarea.form-field { resize: none; min-height: 144px; }
   <div id="navdrop">
     <div class="drop-inner">
       <div class="drop-section">
+        <div class="drop-label">Услуги</div>
+        <div class="drop-grid-1">
+          <a class="drop-btn" href="service-design.html">Дизайн интерфейса</a>
+          <a class="drop-btn" href="service-branding.html">Цифровой брендинг</a>
+          <a class="drop-btn" href="service-landing.html">Продуктовый лендинг</a>
+          <a class="drop-btn" href="ux-ui-audit.html">UX/UI аудит</a>
+        </div>
+      </div>
+      <div class="drop-section">
         <div class="drop-label">Портфолио</div>
         <div class="drop-portfolio">
           <a class="drop-card" href="case-1.html">
@@ -168,27 +177,15 @@ textarea.form-field { resize: none; min-height: 144px; }
         <a class="drop-btn" href="portfolio.html" style="margin-top:10px;">Все проекты</a>
       </div>
       <div class="drop-section">
-        <div class="drop-label">Услуги</div>
-        <div class="drop-grid-1">
-          <a class="drop-btn" href="service-design.html">Дизайн интерфейса</a>
-          <a class="drop-btn" href="service-branding.html">Цифровой брендинг</a>
-          <a class="drop-btn" href="service-landing.html">Продуктовый лендинг</a>
-          <a class="drop-btn" href="ux-ui-audit.html">UX/UI аудит</a>
-        </div>
-      </div>
-      <div class="drop-section">
-        <div class="drop-label">Подход</div>
-        <div class="drop-grid-3">
-          <a class="drop-btn" href="approach-fix.html">Фикс</a>
-          <a class="drop-btn" href="approach-tm.html">ТМ</a>
-          <a class="drop-btn" href="approach-retainer.html">Ретейнер</a>
-        </div>
-      </div>
-      <div class="drop-section">
         <div class="drop-label">Дизайнеру</div>
         <div class="drop-grid-2">
           <a class="drop-btn" href="blog.html">Лучшие практики</a>
           <a class="drop-btn" href="vacancies.html">Вакансии</a>
+        </div>
+      </div>
+      <div class="drop-section">
+        <div class="drop-grid-1">
+          <a class="drop-btn" href="about.html">О нас</a>
         </div>
       </div>
     </div>
@@ -208,7 +205,7 @@ textarea.form-field { resize: none; min-height: 144px; }
     navdrop.classList.toggle('on', state === 'menu');
     formdrop.classList.toggle('on', state === 'form');
     navwrap.classList.toggle('open', state !== null);
-    bar.style.borderRadius = state ? '18px 18px 0 0' : '18px';
+    bar.style.borderRadius = state ? '0 0 18px 18px' : '18px';
   }
 
   window.toggleNav = function () { setNavState(navState === 'menu' ? null : 'menu'); };

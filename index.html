@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Нокнок — дизайн-агентство</title>
 <link rel="stylesheet" href="styles/main.css">
+
+<!-- SVG-фильтр рыбьего глаза -->
+<svg style="position:absolute;width:0;height:0">
+  <defs>
+    <filter id="bulge" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.5"
+                    numOctaves="1" result="noise"/>
+      <feDisplacementMap id="dmap" in="SourceGraphic" in2="noise"
+                         scale="0" xChannelSelector="R"
+                         yChannelSelector="G" result="d"/>
+      <feGaussianBlur id="gblur" in="d" stdDeviation="0"/>
+    </filter>
+  </defs>
+</svg>
 <style>
 .section { padding-top: 60px; padding-bottom: 60px; }
 .col-full > .bc:first-child { padding-top: 0; }
@@ -203,14 +217,28 @@ const hero    = document.getElementById('hero');
 const leftnav = document.getElementById('leftnav');
 const copy    = document.getElementById('copyright');
 const topnav  = document.getElementById('topnav');
+const heroImg = document.querySelector('.hero-img');
+const dmap    = document.getElementById('dmap');
+const gblur   = document.getElementById('gblur');
 
 function onScroll() {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
   topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
+
   const pastHero = window.scrollY > hero.offsetHeight * 0.85;
   leftnav.classList.toggle('dark', pastHero);
   copy.classList.toggle('dark', pastHero);
+
+  /* рыбий глаз — последние 30% скролла по герою */
+  if (heroImg && dmap && gblur) {
+    const p = window.scrollY / hero.offsetHeight;
+    const e = Math.max(0, Math.min(1, (p - 0.7) / 0.3));
+    dmap.setAttribute('scale', e * 120);
+    gblur.setAttribute('stdDeviation', e * 5);
+    heroImg.style.filter    = 'url(#bulge) brightness(' + (1 - e * 0.15) + ')';
+    heroImg.style.transform = 'translate(-50%, -50%) scale(' + (1 + e * 0.08) + ')';
+  }
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();

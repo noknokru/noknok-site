@@ -165,6 +165,7 @@ textarea.form-field { resize: none; min-height: 144px; }
             <div class="drop-card-title">Мобильное приложение для онлайн-записи</div>
           </a>
         </div>
+        <a class="drop-btn" href="portfolio.html" style="margin-top:10px;">Все проекты</a>
       </div>
       <div class="drop-section">
         <div class="drop-label">Услуги</div>

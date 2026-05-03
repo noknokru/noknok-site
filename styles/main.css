@@ -149,7 +149,13 @@ body {
 /* ─── CTA — ТЁМНЫЙ БЛОК ─── */
 .cta-inner {
   background: var(--c-dark); border-radius: var(--r-cta);
-  padding: 80px 40px; display: flex; flex-direction: column; align-items: center; gap: 28px;
+  padding: 160px 0; display: flex; flex-direction: column; align-items: center;
+}
+.cta-content {
+  /* Ширина ровно 4 колонки — не меняется при расширении подложки */
+  width: calc((100vw - 2 * var(--outer) - 11 * var(--gap)) / 3 + 3 * var(--gap));
+  padding: 0 28px; box-sizing: border-box;
+  display: flex; flex-direction: column; align-items: center; gap: 28px;
 }
 /* Бейджи над заголовком */
 .cta-badge,
@@ -163,33 +169,44 @@ body {
   font-size: var(--fs-cta); font-weight: 700; color: var(--c-bg);
   text-align: center; line-height: var(--lh-heading); letter-spacing: var(--ls-tight);
 }
-.cta-sub   { font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.4); text-align: center; }
-.cta-hints { font-size: 12px; color: rgba(255,255,255,0.3); text-align: center; }
+.cta-sub   { font-size: 20px; line-height: 1.4; color: rgba(255,255,255,0.4); text-align: center; }
+.cta-hints { font-size: 16px; color: rgba(255,255,255,0.3); text-align: center; }
 
 /* Кнопка в тёмном блоке (с объёмной тенью) */
 .cta-btn,
 .cta-card {
-  display: block; width: 100%; padding: 22px 32px;
+  display: block; width: auto; padding: 22px 48px;
   background: var(--c-bg); border-radius: var(--r-btn);
   font-family: inherit; font-size: var(--fs-ui); font-weight: 500; color: var(--c-ink);
   text-align: center; text-decoration: none; border: none; cursor: pointer;
-  box-shadow: 0 4px 0 rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 0 #3a3a3a, 0 10px 24px rgba(0,0,0,0.4);
   transition: transform 0.12s, box-shadow 0.12s;
 }
-.cta-btn:hover,  .cta-card:hover  { transform: translateY(-2px); box-shadow: 0 6px 0 rgba(0,0,0,0.6), 0 14px 32px rgba(0,0,0,0.35); }
-.cta-btn:active, .cta-card:active { transform: translateY(3px);  box-shadow: 0 1px 0 rgba(0,0,0,0.5); }
+.cta-btn:hover,  .cta-card:hover  { background: #1F54E4; color: #fff; transform: translateY(-2px); box-shadow: 0 7px 0 #1640b8, 0 14px 32px rgba(31,84,228,0.35); }
+.cta-btn:active, .cta-card:active { transform: translateY(4px);  box-shadow: 0 1px 0 #3a3a3a; }
 
-/* Обёртка для кнопки-карточки в блоге */
-.cta-card-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; max-width: var(--w); }
+/* Обёртка с обводкой вокруг кнопки и подписи */
+.cta-card-wrap {
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 24px;
+  padding: 8px 8px 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  width: 100%; max-width: var(--w);
+}
+.cta-card-wrap .cta-btn { width: 100%; }
 
 /* CTA в основных страницах */
 .final-cta {
-  padding: 0 var(--outer) 100px;
+  padding: 60px var(--outer) 100px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: var(--gap);
 }
-.final-cta .cta-inner { grid-column: 5 / 9; }
+.final-cta .cta-inner {
+  grid-column: 1 / 13;
+  margin-left: calc((100% - 11 * var(--gap)) / 3 + 4 * var(--gap));
+  margin-right: calc((100% - 11 * var(--gap)) / 3 + 4 * var(--gap));
+}
 
 /* CTA в блоге */
 .cta-section {

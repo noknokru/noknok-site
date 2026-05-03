@@ -6,6 +6,10 @@
 <title>Нокнок — дизайн-агентство</title>
 <link rel="stylesheet" href="styles/main.css">
 <style>
+.section { padding-top: 60px; padding-bottom: 60px; }
+.col-full > .bc:first-child { padding-top: 0; }
+.col-full > .bc:last-child  { padding-bottom: 0; }
+
 /* ─── УСЛУГИ ─── */
 .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .service-card {
@@ -31,39 +35,25 @@
 .format-price { font-size: var(--fs-ui); font-weight: 500; color: var(--c-ink-3); white-space: nowrap; padding-top: 4px; }
 
 /* ─── ПОРТФОЛИО ─── */
-.portfolio-list { display: flex; flex-direction: column; gap: 12px; }
-.portfolio-card {
-  display: block; text-decoration: none;
-  border: 1px solid var(--c-border); border-radius: var(--r-card); overflow: hidden;
-  transition: border-color 0.15s;
+.bc {
+  display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap);
+  align-items: start; padding: 56px 0; text-decoration: none; transition: opacity 0.15s;
 }
-.portfolio-card:hover { border-color: #bbb; }
-.portfolio-img { width: 100%; height: 220px; background: var(--c-border); }
-.portfolio-body { padding: 24px 28px 28px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
-.portfolio-meta { display: flex; flex-direction: column; gap: 6px; }
-.portfolio-tag   { font-size: var(--fs-label); letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-ink-3); }
-.portfolio-title { font-size: var(--fs-h3); font-weight: 500; letter-spacing: -0.02em; color: var(--c-ink); line-height: var(--lh-tight); }
-.portfolio-arrow { color: #ccc; flex-shrink: 0; padding-top: 4px; }
+.bc:hover { opacity: 0.65; }
+.bc-img { background: #d5d5d5; border-radius: var(--r-card); }
+.bc-title { font-size: var(--fs-body); font-weight: 500; line-height: 1.4; color: var(--c-ink); }
+.bc-tag { font-size: var(--fs-label); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--c-ink-3); margin-bottom: 10px; }
+.bc--1 .bc-img  { grid-column: 3 / 11; grid-row: 1; height: 480px; }
+.bc--1 .bc-text { grid-column: 3 / 7;  grid-row: 2; padding-top: 24px; }
+.bc--2 .bc-img  { grid-column: 5 / 9;  grid-row: 1; height: 480px; }
+.bc--2 .bc-text { grid-column: 5 / 9;  grid-row: 2; padding-top: 24px; }
+.bc--3 .bc-img  { grid-column: 3 / 11; grid-row: 1; height: 480px; }
+.bc--3 .bc-text { grid-column: 5 / 9;  grid-row: 2; padding-top: 24px; }
 </style>
 </head>
 <body>
 
 <div id="hero-root"></div>
-
-<!-- ПОДХОД -->
-<div class="section section-alt">
-  <div class="container">
-    <div class="section-label">Подход</div>
-    <h2 class="section-title">Работаем на всех уровнях продукта</h2>
-    <p class="about-text">Когда функции у всех одинаковые — побеждает ощущение. Интерфейс это не набор экранов, это поведение продукта которое пользователь считывает каждую секунду.</p>
-    <ul class="bullet-list">
-      <li>Визуал: композиция, ритм, цвет. Чтобы интерфейс не выглядел «как у всех».</li>
-      <li>Поведение: как человек движется по продукту, где тормозит, где теряется.</li>
-      <li>Логика: каждый экран решает задачу бизнеса.</li>
-      <li>Детали: тексты, анимации, реакции. Они формируют ощущение бренда.</li>
-    </ul>
-  </div>
-</div>
 
 <!-- SERVICES -->
 <div class="section">
@@ -104,48 +94,27 @@
 </div>
 
 <!-- PORTFOLIO -->
-<div class="section section-alt">
-  <div class="col-8">
-    <div class="section-label">Кейсы</div>
-    <h2 class="section-title">Избранные проекты</h2>
-    <div class="portfolio-list">
-      <a class="portfolio-card" href="case-1.html">
-        <div class="portfolio-img"></div>
-        <div class="portfolio-body">
-          <div class="portfolio-meta">
-            <div class="portfolio-tag">Брендинг · Интерфейсы</div>
-            <div class="portfolio-title">Урбика — путеводитель по городу для детей и родителей</div>
-          </div>
-          <svg class="portfolio-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M4 16L16 4M16 4H8M16 4V12" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </a>
-      <a class="portfolio-card" href="case-2.html">
-        <div class="portfolio-img"></div>
-        <div class="portfolio-body">
-          <div class="portfolio-meta">
-            <div class="portfolio-tag">Брендинг · Интерфейсы</div>
-            <div class="portfolio-title">Редизайн платформы для управления командой</div>
-          </div>
-          <svg class="portfolio-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M4 16L16 4M16 4H8M16 4V12" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </a>
-      <a class="portfolio-card" href="case-3.html">
-        <div class="portfolio-img"></div>
-        <div class="portfolio-body">
-          <div class="portfolio-meta">
-            <div class="portfolio-tag">Продукт · UX</div>
-            <div class="portfolio-title">Мобильное приложение для онлайн-записи</div>
-          </div>
-          <svg class="portfolio-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M4 16L16 4M16 4H8M16 4V12" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </a>
-    </div>
+<div class="section">
+  <div class="col-full">
+    <a class="bc bc--1" href="case-1.html">
+      <div class="bc-img"></div>
+      <div class="bc-text">
+        <div class="bc-tag">Брендинг · Интерфейсы</div>
+        <p class="bc-title">Урбика — путеводитель по городу для детей и родителей</p>
+      </div>
+    </a>
+    <a class="bc bc--2" href="case-2.html">
+      <div class="bc-img"></div>
+      <div class="bc-text">
+        <p class="bc-title">Редизайн платформы для управления командой</p>
+      </div>
+    </a>
+    <a class="bc bc--3" href="case-3.html">
+      <div class="bc-img"></div>
+      <div class="bc-text">
+        <p class="bc-title">Мобильное приложение для онлайн-записи</p>
+      </div>
+    </a>
   </div>
 </div>
 
@@ -172,7 +141,7 @@
 </div>
 
 <!-- FORMATS -->
-<div class="section section-alt">
+<div class="section">
   <div class="container">
     <div class="section-label">Форматы</div>
     <h2 class="section-title">Как работаем</h2>
@@ -218,19 +187,10 @@
 <!-- REVIEWS -->
 <div class="section" id="reviews-root"></div>
 
-<!-- FINAL CTA -->
-<div class="final-cta">
-  <div class="cta-inner">
-    <h2 class="cta-title">Обсудим ваш проект?</h2>
-    <p class="cta-sub">Расскажите о задаче — мы ответим в течение дня и предложим формат работы.</p>
-    <button class="cta-btn" onclick="openForm()">Оставить заявку</button>
-    <div class="cta-hints">Бесплатная консультация · Без обязательств</div>
-  </div>
-</div>
-
 <script src="components/navbar.js"></script>
 <script src="components/hero.js"></script>
 <script src="components/reviews.js"></script>
+<script src="components/cta.js"></script>
 <script>
 renderReviews('reviews-root', { label: 'Отзывы', title: 'Что говорят клиенты' });
 
@@ -254,6 +214,8 @@ function onScroll() {
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
+
+
 </script>
 </body>
 </html>

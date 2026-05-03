@@ -3,21 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дизайн интерфейса — Нокнок</title>
+<title>Дизайн интерфейсов — Нокнок</title>
 <link rel="stylesheet" href="styles/main.css">
+<style>
+/* ─── ЧТО ДЕЛАЕМ / КАК НАЧАТЬ ─── */
+.step-list { display: flex; flex-direction: column; }
+.step-item { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--c-border); }
+.step-item:first-child { padding-top: 0; }
+.step-item:last-child  { border-bottom: none; padding-bottom: 0; }
+.step-num  { font-size: var(--fs-label); letter-spacing: 0.1em; color: #bbb; text-transform: uppercase; min-width: 28px; padding-top: 5px; flex-shrink: 0; }
+.step-body h3 { font-size: var(--fs-h3); font-weight: 500; letter-spacing: var(--ls-tighter); color: var(--c-ink); line-height: var(--lh-tight); margin-bottom: 8px; }
+.step-body p  { font-size: var(--fs-ui); line-height: 1.55; color: var(--c-ink-2); }
+
+/* ─── ФОРМАТЫ ─── */
+.formats-grid { display: flex; flex-direction: column; gap: 10px; }
+.format-card  { border: 1px solid var(--c-border); border-radius: var(--r-card); padding: 24px 28px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.format-body  { display: flex; flex-direction: column; gap: 6px; }
+.format-name  { font-size: 20px; font-weight: 500; color: var(--c-ink); letter-spacing: var(--ls-tighter); }
+.format-desc  { font-size: var(--fs-ui); color: var(--c-ink-2); line-height: 1.5; }
+.format-price { font-size: var(--fs-ui); font-weight: 500; color: var(--c-ink-3); white-space: nowrap; padding-top: 4px; }
+</style>
 </head>
 <body>
+
 <div id="hero-root"></div>
-<div class="stub"><div class="container"><p>Страница в разработке.</p></div></div>
+
+<!-- ДЛЯ КОГО -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Для кого</div>
+    <h2 class="section-title">Вам подойдёт если:</h2>
+    <ul class="bullet-list">
+      <li>Есть продукт, но дизайн не поспевает за его ростом</li>
+      <li>Внутренняя команда перегружена или не хватает экспертизы в UI</li>
+      <li>Продукт работает, но выглядит как все — нет характера, нет узнаваемости</li>
+      <li>Нужен редизайн, но непонятно с чего начать и как не сломать то что работает</li>
+      <li>Запускаете новый продукт и хотите сразу сделать правильно</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ЧТО ДЕЛАЕМ -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Что делаем</div>
+    <h2 class="section-title">Из чего состоит работа</h2>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Концепция</h3>
+          <p>Начинаем с поиска сильной идеи — как продукт должен выглядеть, ощущаться и чем отличаться. Это быстро: за 1–2 недели у вас будет визуальное направление которое можно обсуждать и защищать внутри команды.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Проектирование</h3>
+          <p>Выстраиваем логику продукта: пользовательские сценарии, навигацию, иерархию информации. Каждое решение объясняем — не потому что так принято, а потому что это помогает команде двигаться дальше без нас.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>UI и визуальный язык</h3>
+          <p>Проектируем интерфейс который узнаётся. Цвет, типографика, сетка, компоненты — всё строится от бренда, а не от шаблона. Результат: продукт который выглядит цельно на любом экране.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Детали и анимации</h3>
+          <p>Микроанимации, поведение элементов, реакции интерфейса, копирайтинг кнопок и подсказок. Именно здесь формируется ощущение — приятно или нет, живое или мёртвое.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h3>Дизайн-система</h3>
+          <p>Компонентная библиотека которую команда может развивать самостоятельно. Не набор экранов а инструмент — с документацией, правилами и логикой.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <h3>Передача в разработку</h3>
+          <p>Готовим макеты к передаче: аннотации, спецификации, ответы на вопросы разработчиков. Остаёмся на связи в процессе имплементации — чтобы продукт в браузере выглядел как в Figma.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ЧТО ПОЛУЧАЕТЕ -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Результат</div>
+    <h2 class="section-title">Что получаете</h2>
+    <ul class="bullet-list">
+      <li>Готовые макеты всех экранов в Figma</li>
+      <li>Дизайн-систему с компонентами и документацией</li>
+      <li>Прототип для тестирования и презентаций</li>
+      <li>Аннотации и спецификации для разработки</li>
+      <li>Поддержку на этапе имплементации</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ОТРАСЛИ -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Отрасли</div>
+    <div class="expertise-tags">
+      <span class="expertise-tag">AI продукты</span>
+      <span class="expertise-tag">Фудтех</span>
+      <span class="expertise-tag">E-commerce</span>
+      <span class="expertise-tag">LMS</span>
+      <span class="expertise-tag">Autotech</span>
+    </div>
+  </div>
+</div>
+
+<!-- ФОРМАТЫ -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Форматы</div>
+    <h2 class="section-title">Как работаем</h2>
+    <div class="formats-grid">
+      <div class="format-card">
+        <div class="format-body">
+          <div class="format-name">Фикс</div>
+          <p class="format-desc">Для MVP, продуктового лендинга или задачи с чётким ТЗ. Договариваемся на результат — платите за него, а не за часы.</p>
+        </div>
+        <div class="format-price">2500 ₽/час</div>
+      </div>
+      <div class="format-card">
+        <div class="format-body">
+          <div class="format-name">T&amp;M</div>
+          <p class="format-desc">Когда задачи появляются по ходу. Подключаем нужный профиль под конкретную задачу. Самая гибкая модель — и самая высокая стоимость часа.</p>
+        </div>
+        <div class="format-price">2000 ₽/час</div>
+      </div>
+      <div class="format-card">
+        <div class="format-body">
+          <div class="format-name">Ретейнер</div>
+          <p class="format-desc">Когда объём большой, ТЗ нет и нужна команда которая думает вместе с вами. Дизайнер и лид, менеджмент и арт-дирекшн наш.</p>
+        </div>
+        <div class="format-price">1800 ₽/час</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- КАК НАЧАТЬ -->
+<div class="section">
+  <div class="container">
+    <div class="section-label">Старт</div>
+    <h2 class="section-title">Как начать</h2>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Заявка</h3>
+          <p>Оставьте заявку — ответим в течение рабочего дня и предложим время для звонка.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Звонок</h3>
+          <p>Узнаём задачу, продукт, контекст. Без брифа и ТЗ — всё выясним сами.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Предложение</h3>
+          <p>Через 1–2 дня пришлём план работ, состав команды и стоимость.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Старт</h3>
+          <p>Согласуем процессы и запускаем работу. С первого дня у вас есть доступ к макетам и еженедельные отчёты.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ОТЗЫВЫ -->
+<div class="section" id="reviews-root"></div>
+
 <script>window.BRAND_SUB = 'Услуги';</script>
 <script src="components/navbar.js"></script>
 <script src="components/hero.js"></script>
+<script src="components/reviews.js"></script>
+<script src="components/cta.js"></script>
 <script>
-  renderHero({ title: 'Дизайн интерфейса' });
-  const hero = document.getElementById('hero');
+  renderReviews('reviews-root', { label: 'Отзывы', title: 'Что говорят клиенты' });
+  renderHero({ title: 'Дизайн интерфейсов' });
+
+  const hero    = document.getElementById('hero');
   const leftnav = document.getElementById('leftnav');
-  const copy = document.getElementById('copyright');
-  const topnav = document.getElementById('topnav');
+  const copy    = document.getElementById('copyright');
+  const topnav  = document.getElementById('topnav');
+
   function onScroll() {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Лучшие практики — Нокнок</title>
+<title>Портфолио — Нокнок</title>
 <link rel="stylesheet" href="styles/main.css">
 <style>
-/* ─── СПИСОК СТАТЕЙ ─── */
+/* ─── СПИСОК ПРОЕКТОВ ─── */
 .blog-list { padding-top: 32px; display: flex; flex-direction: column; }
 
 .bc {
@@ -64,47 +64,38 @@
   <div class="blog-list col-full">
 
     <!-- Тип 1: картинка (3–11) по центру строка 1, текст (3–7) левый край строка 2 -->
-    <a class="bc bc--1" href="blog-post.html">
+    <a class="bc bc--1" href="case-1.html">
       <div class="bc-img"></div>
       <div class="bc-text">
-        <div class="bc-tag">AI · E-commerce</div>
-        <p class="bc-title">Как AI-фотосъёмка меняет e-commerce в 2026 году</p>
+        <div class="bc-tag">Брендинг · Интерфейсы</div>
+        <p class="bc-title">Урбика — путеводитель по городу для детей и родителей</p>
       </div>
     </a>
 
     <!-- Тип 2: картинка (5–8) строка 1, текст (5–8) строка 2 -->
-    <a class="bc bc--2" href="#">
+    <a class="bc bc--2" href="case-2.html">
       <div class="bc-img"></div>
       <div class="bc-text">
-        <p class="bc-title">Собрали все User Flow мобильных приложений Авито, Авто.ру и Дрома</p>
+        <p class="bc-title">Редизайн платформы для управления командой</p>
       </div>
     </a>
 
     <!-- Тип 3: картинка (3–11) строка 1 по центру, текст (5–8) строка 2 -->
-    <a class="bc bc--3" href="#">
+    <a class="bc bc--3" href="case-3.html">
       <div class="bc-img"></div>
       <div class="bc-text">
-        <p class="bc-title">Собрали все User Flow мобильных приложений Авито, Авто.ру и Дрома</p>
-      </div>
-    </a>
-
-    <!-- Тип 4: картинка (1–12) строка 1, текст (5–8) строка 2 -->
-    <a class="bc bc--4" href="#">
-      <div class="bc-img"></div>
-      <div class="bc-text">
-        <p class="bc-title">Собрали все User Flow мобильных приложений Авито, Авто.ру и Дрома</p>
+        <p class="bc-title">Мобильное приложение для онлайн-записи</p>
       </div>
     </a>
 
   </div>
 </div>
 
-<script>window.BRAND_SUB = 'Дизайнеру';</script>
 <script src="components/navbar.js"></script>
 <script src="components/hero.js"></script>
 <script src="components/cta.js"></script>
 <script>
-renderHero({ title: 'Лучшие практики' });
+renderHero({ title: 'Портфолио' });
 
 const hero    = document.getElementById('hero');
 const leftnav = document.getElementById('leftnav');

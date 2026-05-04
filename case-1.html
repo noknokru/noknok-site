@@ -3,32 +3,343 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Урбика — Нокнок</title>
+<title>Урбика — путеводитель по городу для детей и родителей — Нокнок</title>
 <link rel="stylesheet" href="styles/main.css">
+<style>
+.st-pill {
+  display: block; font-size: 16px; font-weight: 500;
+  color: var(--c-ink-3); background: var(--c-bg); border: 1.5px solid var(--c-ink-3);
+  border-radius: 8px; padding: 6px 13px; white-space: nowrap; line-height: var(--lh-tight);
+}
+.st.on .st-pill { border-color: var(--c-ink); color: var(--c-ink); }
+
+/* ─── СТАТЬЯ ─── */
+.art-body { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--c-ink-2); }
+.art-body h2 { font-size: var(--fs-h2); font-weight: 500; letter-spacing: var(--ls-tight); color: var(--c-ink); margin: 40px 0 16px; line-height: var(--lh-heading); scroll-margin-top: 90px; }
+.art-body h3 { font-size: var(--fs-h3); font-weight: 500; letter-spacing: var(--ls-tighter); color: var(--c-ink); margin: 32px 0 10px; line-height: var(--lh-tight); scroll-margin-top: 90px; }
+.art-body p  { margin-bottom: 18px; }
+.art-body ul { list-style: none; margin: 14px 0 22px; display: flex; flex-direction: column; gap: 10px; }
+.art-body ul li { display: flex; gap: 12px; }
+.art-body ul li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--c-ink-2); margin-top: 13px; flex-shrink: 0; }
+.art-body ol { list-style: none; counter-reset: n; margin: 14px 0 22px; display: flex; flex-direction: column; gap: 10px; }
+.art-body ol li { display: flex; gap: 12px; counter-increment: n; }
+.art-body ol li::before { content: counter(n, decimal-leading-zero); font-size: 10px; font-weight: 600; color: #999; min-width: 18px; margin-top: 11px; letter-spacing: 0.04em; }
+.art-body blockquote { border-left: 2px solid var(--c-ink); padding: 4px 0 4px 20px; margin: 28px 0; font-size: 20px; font-style: italic; color: var(--c-ink); line-height: 1.45; }
+.callout { background: var(--c-bg-alt); border-radius: 12px; padding: 16px 20px; margin: 24px 0; font-size: 16px; color: #555; display: flex; gap: 12px; line-height: 1.5; }
+.callout-ico { font-size: 15px; flex-shrink: 0; }
+.art-hr { height: 0; margin: 40px 0; }
+
+/* ─── КАСТОМНЫЙ HERO ─── */
+#post-hero { height: 300vh; }
+#post-hero-sticky {
+  position: sticky; top: 0; height: 100vh; overflow: hidden;
+}
+#post-hero-head {
+  position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+  width: calc((100vw - 2 * var(--outer) - 11 * var(--gap)) / 3 + 3 * var(--gap));
+  display: flex; flex-direction: column; gap: 20px;
+  align-items: center; text-align: center; z-index: 1;
+}
+.post-hero-tag {
+  font-size: 14px; font-weight: 500; color: var(--c-ink-3);
+  border: 1.5px solid var(--c-ink-3); border-radius: 10px;
+  padding: 6px 16px; white-space: nowrap;
+}
+.post-hero-title {
+  font-size: clamp(32px, 3.8vw, 56px); font-weight: 700;
+  line-height: 1.08; letter-spacing: -0.03em;
+  margin: 0;
+}
+.ch {
+  display: inline-block;
+  color: #bbb;
+}
+.ch-word {
+  white-space: nowrap;
+}
+#post-hero-cover {
+  position: absolute; border-radius: 20px; background: #222; overflow: hidden; z-index: 2;
+}
+#post-hero-cover canvas { width: 100%; height: 100%; display: block; pointer-events: none; }
+#post-hero-cover { pointer-events: none; }
+</style>
 </head>
 <body>
-<div id="hero-root"></div>
-<div class="stub"><div class="container"><p>Страница в разработке.</p></div></div>
-<script>window.BRAND_SUB = 'Портфолио';</script>
+
+<!-- SIDE TOC -->
+
+<!-- КАСТОМНЫЙ HERO -->
+<div id="post-hero">
+  <div id="post-hero-sticky">
+    <div id="post-hero-head">
+      <div class="post-hero-tag">Портфолио</div>
+      <h1 class="post-hero-title" id="reveal-text">Урбика — путеводитель по городу для детей и родителей</h1>
+    </div>
+    <div id="post-hero-cover">
+      <canvas id="cv"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="section">
+  <div class="container art-body">
+    <p>Ещё несколько лет назад пересъёмка каталога была синонимом недель подготовки, десятков тысяч рублей бюджета и бесконечных правок с ретушёрами. Сегодня всё это можно сделать за несколько часов.</p>
+
+    <h2 id="s1">Почему фото решает всё</h2>
+    <p>Исследования показывают, что качество изображения влияет на конверсию сильнее, чем описание товара или цена. Покупатель принимает решение в первые три секунды — и всё это время смотрит на фотографию.</p>
+    <blockquote>Каталог — это витрина. Если витрина выглядит дёшево, покупатель идёт дальше.</blockquote>
+    <p>Именно поэтому крупные бренды тратят на фотопродакшен столько, сколько небольшой стартап не потратит за год. Но разрыв стремительно сокращается.</p>
+
+    <h3 id="s1-1">Проблема традиционного подхода</h3>
+    <p>Классическая съёмка упирается в несколько ограничений:</p>
+    <ul>
+      <li>Высокая стоимость аренды студии и команды</li>
+      <li>Долгий цикл — от брифа до финальных файлов 2–3 недели</li>
+      <li>Невозможность быстро пересъёмки при смене трендов</li>
+      <li>Зависимость от расписания моделей и фотографов</li>
+    </ul>
+
+    <h3 id="s1-2">Что изменилось с появлением AI</h3>
+    <p>Генеративные модели научились работать с одёждой на уровне, неотличимом от студийного снимка. Ключевой прорыв — точная передача текстуры ткани, складок и фактуры материала.</p>
+    <div class="callout"><span class="callout-ico">💡</span><span>Средняя экономия на пересъёмке каталога из 200 позиций составляет 85% по сравнению с традиционной студией.</span></div>
+
+    <div class="art-hr"></div>
+
+    <h2 id="s2">Как это работает на практике</h2>
+    <p>Процесс сводится к трём шагам: загрузка исходника, выбор стиля, получение результата. Никаких технических знаний не требуется.</p>
+    <ol>
+      <li>Загружаете фото товара на белом фоне или с манекена</li>
+      <li>Выбираете стиль: street, lifestyle, PDP, UGC или студия</li>
+      <li>Получаете готовые файлы в нужном формате и разрешении</li>
+    </ol>
+
+    <h3 id="s2-1">Поддерживаемые форматы съёмки</h3>
+    <p>Система умеет генерировать несколько типов контента из одного исходника: карточки для маркетплейсов, lifestyle-фото для соцсетей, рекламные баннеры и UGC-стиль для stories.</p>
+
+    <h3 id="s2-2">Контроль качества</h3>
+    <p>Каждый результат проходит автоматическую проверку по 12 параметрам: резкость, цветопередача, соответствие брендбуку и корректность отображения продукта.</p>
+
+    <div class="art-hr"></div>
+
+    <h2 id="s3">Результаты брендов</h2>
+    <p>За первый квартал 2026 года клиенты платформы суммарно пересняли более 400 000 позиций. Средний рост конверсии после обновления каталога составил 23%.</p>
+    <ul>
+      <li>Время выхода новой коллекции сократилось с 3 недель до 2 дней</li>
+      <li>Стоимость одного финального изображения — от 12 рублей</li>
+      <li>Совместимость с форматами всех крупных маркетплейсов</li>
+    </ul>
+
+    <div class="art-hr"></div>
+
+    <h2 id="s4">Что дальше</h2>
+    <p>Следующий шаг — видео. Модели уже умеют генерировать короткие loops и анимации на основе статичного фото. Ожидаем публичный релиз этой функции в третьем квартале 2026.</p>
+    <p>Подпишитесь на обновления — мы первыми сообщим о запуске.</p>
+  </div>
+</div>
+
+<script>window.BRAND_SUB = ''; window.LIGHT_NAV = true;</script>
 <script src="components/navbar.js"></script>
-<script src="components/hero.js"></script>
 <script src="components/cta.js"></script>
 <script>
-  renderHero({ title: 'Урбика — путеводитель по городу для детей и родителей' });
-  const hero = document.getElementById('hero');
-  const leftnav = document.getElementById('leftnav');
-  const copy = document.getElementById('copyright');
-  const topnav = document.getElementById('topnav');
-  function onScroll() {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
-    topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
-    const pastHero = window.scrollY > hero.offsetHeight * 0.85;
-    leftnav.classList.toggle('dark', pastHero);
-    copy.classList.toggle('dark', pastHero);
+const heroEl  = document.getElementById('post-hero');
+const headEl  = document.getElementById('post-hero-head');
+const coverEl = document.getElementById('post-hero-cover');
+const cv      = document.getElementById('cv');
+const ctx     = cv.getContext('2d');
+const leftnav = document.getElementById('leftnav');
+const copy    = document.getElementById('copyright');
+const topnav  = document.getElementById('topnav');
+
+let srcData = null;
+let lastT   = -1;
+let rafId   = null;
+
+function initCanvas(img) {
+  let cw = img.naturalWidth, ch = img.naturalHeight;
+  if (cw > 1440) { ch = Math.round(ch * 1440 / cw); cw = 1440; }
+  cv.width = cw; cv.height = ch;
+  ctx.drawImage(img, 0, 0, cw, ch);
+  try {
+    srcData = ctx.getImageData(0, 0, cw, ch);
+  } catch(e) {
+    /* canvas tainted на file:// — fisheye недоступен, картинка видна */
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  animateHero();
+}
+
+/* Сначала пробуем XHR→blob (обходит canvas taint на file://),
+   при ошибке — прямая загрузка */
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'img/urbika1.jpg', true);
+xhr.responseType = 'blob';
+xhr.onload = function() {
+  const url = URL.createObjectURL(xhr.response);
+  const img = new Image();
+  img.onload = function() { initCanvas(img); URL.revokeObjectURL(url); };
+  img.src = url;
+};
+xhr.onerror = function() {
+  const img = new Image();
+  img.onload = function() { initCanvas(img); };
+  img.src = 'img/urbika1.jpg';
+};
+xhr.send();
+
+function easeInOut(x) { return x < 0.5 ? 2*x*x : 1 - Math.pow(-2*x+2, 2)/2; }
+function easeOut(x)   { return 1 - Math.pow(1-x, 3); }
+
+function applyFisheye(src, strength, zoom) {
+  const W = cv.width, H = cv.height;
+  const dst = ctx.createImageData(W, H);
+  const cx = W/2, cy = H/2;
+  const R  = Math.min(cx, cy);
+  for (let y = 0; y < H; y++) {
+    for (let x = 0; x < W; x++) {
+      const nx = (x - cx) / (R * zoom);
+      const ny = (y - cy) / (R * zoom);
+      const r  = Math.sqrt(nx*nx + ny*ny);
+      const factor = strength < 0.001 ? 1 : 1 / (1 + strength * r * r);
+      const sx = Math.round(cx + nx * factor * R * zoom);
+      const sy = Math.round(cy + ny * factor * R * zoom);
+      const di = (y * W + x) * 4;
+      if (sx >= 0 && sx < W && sy >= 0 && sy < H) {
+        const si = (sy * W + sx) * 4;
+        dst.data[di]   = src.data[si];
+        dst.data[di+1] = src.data[si+1];
+        dst.data[di+2] = src.data[si+2];
+        dst.data[di+3] = 255;
+      }
+    }
+  }
+  return dst;
+}
+
+function render(t) {
+  if (!srcData) return;
+  if (Math.abs(t - lastT) < 0.005) return;
+  lastT = t;
+  const e            = easeInOut(t);
+  const zoom         = 1.0 - e * 0.22;
+  const fishProgress = Math.max(0, (t - 0.7) / 0.3);
+  const fishStrength = easeOut(fishProgress) * 0.35;
+  const frame = applyFisheye(srcData, fishStrength, zoom);
+  ctx.putImageData(frame, 0, 0);
+}
+
+/* hero светлый — логотип и копирайт сразу тёмные */
+leftnav.classList.add('dark');
+copy.classList.add('dark');
+
+function animateHero() {
+  const cs    = getComputedStyle(document.documentElement);
+  const outer = parseFloat(cs.getPropertyValue('--outer')) || 40;
+  const gap   = parseFloat(cs.getPropertyValue('--gap'))   || 20;
+  const vw    = window.innerWidth;
+  const colW  = (vw - 2 * outer - 11 * gap) / 12;
+  const w8    = 8 * colW + 7 * gap;
+  const w12   = vw - 2 * outer;
+  const left8 = (w12 - w8) / 2;
+
+  const topStart = headEl.offsetTop + headEl.offsetHeight + 50;
+
+  /* фаза 1: расширение 8→12 колонок (первые 100vh скролла) */
+  const phase1 = window.innerHeight;
+  const p      = Math.max(0, Math.min(1, window.scrollY / phase1));
+  const curW   = w8 + (w12 - w8) * p;
+
+  coverEl.style.width  = curW + 'px';
+  coverEl.style.height = (curW * 9 / 16) + 'px';
+  coverEl.style.left   = (outer + left8 * (1 - p)) + 'px';
+  coverEl.style.top    = (topStart * (1 - p)) + 'px';
+
+  /* t: прогресс по всему герою (0→1), fisheye стартует с t=0.7 */
+  const heroMax = heroEl.offsetHeight - window.innerHeight;
+  const t = heroMax > 0 ? Math.min(1, Math.max(0, window.scrollY / heroMax)) : 0;
+
+  if (rafId) cancelAnimationFrame(rafId);
+  const tSnap = t;
+  rafId = requestAnimationFrame(() => render(tSnap));
+}
+
+function onScroll() {
+  const maxTotal = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = maxTotal > 0 ? Math.max(0, Math.min(window.scrollY / maxTotal * 100, 100)) : 0;
+  topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
+
+  animateHero();
+
+
+  let cur = '';
+  document.querySelectorAll('h2[id],h3[id]').forEach(h => {
+    if (window.scrollY + 110 >= h.offsetTop) cur = h.id;
+  });
+  document.querySelectorAll('.st').forEach(it => it.classList.toggle('on', it.dataset.id === cur));
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', animateHero);
+animateHero();
+onScroll();
+
+function goTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+
+</script>
+<script>
+(function () {
+  function init() {
+    var h1 = document.getElementById('reveal-text');
+    if (!h1) return;
+
+    h1.innerHTML = h1.textContent.trim().split(' ').map(function(w) {
+      return '<span style="display:inline-block;white-space:nowrap">' +
+        w.split('').map(function(c) {
+          return '<span class="ch" style="display:inline-block;color:rgb(187,187,187)">' + c + '</span>';
+        }).join('') +
+      '</span>';
+    }).join(' ');
+
+    var spans = h1.querySelectorAll('.ch');
+    var n = spans.length;
+    var R = 60;
+    var gArr = [], sArr = [];
+    for (var i = 0; i < n; i++) { gArr[i] = 187; sArr[i] = 1; }
+    var mx = -9999, my = -9999;
+
+    window.addEventListener('mousemove', function(ev) {
+      mx = ev.clientX; my = ev.clientY;
+    });
+
+    function tick() {
+      for (var i = 0; i < n; i++) {
+        var b  = spans[i].getBoundingClientRect();
+        var dx = mx - (b.left + b.width  * 0.5);
+        var dy = my - (b.top  + b.height * 0.5);
+        var p  = Math.max(0, 1 - Math.sqrt(dx*dx + dy*dy) / R);
+        var tg = 187 * (1 - p);
+        var ts = 1 + p * 0.1;
+        gArr[i] += (tg - gArr[i]) * 0.15;
+        sArr[i] += (ts - sArr[i]) * 0.15;
+        var g = Math.round(gArr[i]);
+        spans[i].style.color     = 'rgb(' + g + ',' + g + ',' + g + ')';
+        spans[i].style.transform = 'scale(' + sArr[i].toFixed(3) + ')';
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Запускаем после полной загрузки всех скриптов
+  if (document.readyState === 'complete') {
+    init();
+  } else {
+    window.addEventListener('load', init);
+  }
+}());
 </script>
 </body>
 </html>

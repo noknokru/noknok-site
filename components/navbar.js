@@ -12,6 +12,7 @@
 #leftnav.dark .brand-main { color: #111; }
 #leftnav.dark .brand-sep  { color: #bbb; }
 #leftnav.dark .brand-sub  { color: #aaa; }
+#page-tag { display: inline-flex; font-size: 14px; font-weight: 500; color: var(--c-ink-3); border: 1.5px solid var(--c-ink-3); border-radius: 10px; padding: 6px 16px; white-space: nowrap; }
 #copyright { position: fixed; left: var(--outer, 40px); bottom: 28px; font-size: 12px; color: rgba(255,255,255,0.4); z-index: 300; transition: color 0.3s; }
 #copyright.dark { color: #999; }
 #navwrap { position: fixed; bottom: 20px; left: calc(var(--outer, 40px) + (100vw - 2 * var(--outer, 40px) - 11 * var(--gap, 20px)) / 3 + 4 * var(--gap, 20px)); width: calc((100vw - 2 * var(--outer, 40px) - 11 * var(--gap, 20px)) / 3 + 3 * var(--gap, 20px)); z-index: 400; display: flex; flex-direction: column-reverse; height: 56px; transition: height 0.45s cubic-bezier(0.4,0,0.2,1); }
@@ -77,14 +78,12 @@ textarea.form-field { resize: none; min-height: 144px; }
 
   /* ─── HTML ─── */
   const _sub = window.BRAND_SUB || '';
-  const _subHtml = _sub
-    ? `<span class="brand-sep">&nbsp;:&nbsp;</span><span class="brand-sub">${_sub}</span>`
-    : '';
 
   document.body.insertAdjacentHTML('afterbegin', `
+${_sub ? `<div style="display:flex;justify-content:center;padding-top:24px;"><div id="page-tag">${_sub}</div></div>` : ''}
 <div id="leftnav">
   <a class="brand" href="index.html">
-    <span class="brand-main">Нокнок</span>${_subHtml}
+    <span class="brand-main">Нокнок</span>
   </a>
 </div>
 <div id="copyright">©2026 Нокнок</div>
@@ -194,6 +193,11 @@ textarea.form-field { resize: none; min-height: 144px; }
 `);
 
   /* ─── JS ─── */
+  if (!window.LIGHT_NAV) {
+    document.getElementById('leftnav').classList.add('dark');
+    document.getElementById('copyright').classList.add('dark');
+  }
+
   const navwrap  = document.getElementById('navwrap');
   const navdrop  = document.getElementById('navdrop');
   const formdrop = document.getElementById('formdrop');

@@ -249,21 +249,27 @@ function animateHero() {
   const gap   = parseFloat(cs.getPropertyValue('--gap'))   || 20;
   const vw    = window.innerWidth;
   const colW  = (vw - 2 * outer - 11 * gap) / 12;
-  const w8    = 8 * colW + 7 * gap;
-  const w12   = vw - 2 * outer;
-  const left8 = (w12 - w8) / 2;
+  const vh     = window.innerHeight;
+  const w8     = 8 * colW + 7 * gap;
+  const h8     = w8 * 9 / 16;
+  const left8  = (vw - w8) / 2;
 
   const topStart = headEl.offsetTop + headEl.offsetHeight + 50;
 
-  /* фаза 1: расширение 8→12 колонок (первые 100vh скролла) */
-  const phase1 = window.innerHeight;
+  const phase1 = vh;
   const p      = Math.max(0, Math.min(1, window.scrollY / phase1));
-  const curW   = w8 + (w12 - w8) * p;
 
-  coverEl.style.width  = curW + 'px';
-  coverEl.style.height = (curW * 9 / 16) + 'px';
-  coverEl.style.left   = (outer + left8 * (1 - p)) + 'px';
-  coverEl.style.top    = (topStart * (1 - p)) + 'px';
+  const curW    = w8    + (vw - w8) * p;
+  const curH    = h8    + (vh - h8) * p;
+  const curLeft = left8 * (1 - p);
+  const curTop  = topStart * (1 - p);
+  const curR    = 20 * (1 - p);
+
+  coverEl.style.width        = curW + 'px';
+  coverEl.style.height       = curH + 'px';
+  coverEl.style.left         = curLeft + 'px';
+  coverEl.style.top          = curTop + 'px';
+  coverEl.style.borderRadius = curR + 'px';
 
   /* t: прогресс по всему герою (0→1), fisheye стартует с t=0.7 */
   const heroMax = heroEl.offsetHeight - window.innerHeight;

@@ -52,21 +52,95 @@
 }
 .ch {
   display: inline-block;
-  color: #bbb;
+  color: #888;
 }
 .ch-word {
   white-space: nowrap;
+}
+.case-media {
+  display: flex; flex-direction: column; align-items: center; gap: 60px;
+  padding: 60px 0;
+}
+.case-media img,
+.case-media video {
+  width: calc((100vw - 2 * var(--outer) - 11 * var(--gap)) / 12 * 8 + 7 * var(--gap));
+  border-radius: 12px; display: block;
+}
+.case-media-group {
+  display: flex; flex-direction: column; align-items: center; gap: 30px; width: 100%;
+}
+.case-media-text {
+  align-self: flex-start;
+  margin-left: calc(var(--outer) + (100vw - 2 * var(--outer) - 11 * var(--gap)) / 12 * 2 + 2 * var(--gap));
+  width: calc((100vw - 2 * var(--outer) - 11 * var(--gap)) / 12 * 4 + 3 * var(--gap));
+  font-size: var(--fs-body); line-height: 1.4; color: var(--c-ink-2);
 }
 #post-hero-cover {
   position: absolute; border-radius: 20px; background: #222; overflow: hidden; z-index: 2;
 }
 #post-hero-cover canvas { width: 100%; height: 100%; display: block; pointer-events: none; }
 #post-hero-cover { pointer-events: none; }
+
+#page-wrap {
+  position: relative; z-index: 1; background: #fff;
+}
+#next-spacer {
+  height: 500px;
+}
+#next-case {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 0;
+  height: 500px;
+  background: #111;
+  text-decoration: none;
+  overflow: hidden;
+}
+#next-cv {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block; cursor: crosshair;
+}
+.next-case-inner {
+  width: calc((100vw - 2 * var(--outer, 40px) - 11 * var(--gap, 20px)) / 12 * 4 + 3 * var(--gap, 20px));
+  display: flex; flex-direction: column; gap: 12px; text-align: center;
+}
+.next-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  pointer-events: none;
+  background: rgba(0,0,0,0.45);
+}
+.next-overlay-inner {
+  width: calc((100vw - 2 * var(--outer, 40px) - 11 * var(--gap, 20px)) / 12 * 4 + 3 * var(--gap, 20px));
+  display: flex; flex-direction: column; gap: 10px; text-align: center;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+#next-case.is-hovered .next-overlay-inner {
+  opacity: 1; transform: translateY(0);
+}
+.next-label {
+  font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+.next-title {
+  font-size: clamp(20px, 2.2vw, 36px); font-weight: 700;
+  line-height: 1.1; letter-spacing: -0.02em; color: #fff;
+}
 </style>
 </head>
 <body>
 
-<!-- SIDE TOC -->
+<a id="next-case" href="case-2.html">
+  <canvas id="next-cv"></canvas>
+  <div class="next-overlay">
+    <div class="next-overlay-inner">
+      <span class="next-label">Далее</span>
+      <span class="next-title">Редизайн платформы для управления командой</span>
+    </div>
+  </div>
+</a>
+
+<div id="page-wrap">
 
 <!-- КАСТОМНЫЙ HERO -->
 <div id="post-hero">
@@ -81,66 +155,21 @@
   </div>
 </div>
 
-<!-- ARTICLE -->
-<div class="section">
-  <div class="container art-body">
-    <p>Ещё несколько лет назад пересъёмка каталога была синонимом недель подготовки, десятков тысяч рублей бюджета и бесконечных правок с ретушёрами. Сегодня всё это можно сделать за несколько часов.</p>
-
-    <h2 id="s1">Почему фото решает всё</h2>
-    <p>Исследования показывают, что качество изображения влияет на конверсию сильнее, чем описание товара или цена. Покупатель принимает решение в первые три секунды — и всё это время смотрит на фотографию.</p>
-    <blockquote>Каталог — это витрина. Если витрина выглядит дёшево, покупатель идёт дальше.</blockquote>
-    <p>Именно поэтому крупные бренды тратят на фотопродакшен столько, сколько небольшой стартап не потратит за год. Но разрыв стремительно сокращается.</p>
-
-    <h3 id="s1-1">Проблема традиционного подхода</h3>
-    <p>Классическая съёмка упирается в несколько ограничений:</p>
-    <ul>
-      <li>Высокая стоимость аренды студии и команды</li>
-      <li>Долгий цикл — от брифа до финальных файлов 2–3 недели</li>
-      <li>Невозможность быстро пересъёмки при смене трендов</li>
-      <li>Зависимость от расписания моделей и фотографов</li>
-    </ul>
-
-    <h3 id="s1-2">Что изменилось с появлением AI</h3>
-    <p>Генеративные модели научились работать с одёждой на уровне, неотличимом от студийного снимка. Ключевой прорыв — точная передача текстуры ткани, складок и фактуры материала.</p>
-    <div class="callout"><span class="callout-ico">💡</span><span>Средняя экономия на пересъёмке каталога из 200 позиций составляет 85% по сравнению с традиционной студией.</span></div>
-
-    <div class="art-hr"></div>
-
-    <h2 id="s2">Как это работает на практике</h2>
-    <p>Процесс сводится к трём шагам: загрузка исходника, выбор стиля, получение результата. Никаких технических знаний не требуется.</p>
-    <ol>
-      <li>Загружаете фото товара на белом фоне или с манекена</li>
-      <li>Выбираете стиль: street, lifestyle, PDP, UGC или студия</li>
-      <li>Получаете готовые файлы в нужном формате и разрешении</li>
-    </ol>
-
-    <h3 id="s2-1">Поддерживаемые форматы съёмки</h3>
-    <p>Система умеет генерировать несколько типов контента из одного исходника: карточки для маркетплейсов, lifestyle-фото для соцсетей, рекламные баннеры и UGC-стиль для stories.</p>
-
-    <h3 id="s2-2">Контроль качества</h3>
-    <p>Каждый результат проходит автоматическую проверку по 12 параметрам: резкость, цветопередача, соответствие брендбуку и корректность отображения продукта.</p>
-
-    <div class="art-hr"></div>
-
-    <h2 id="s3">Результаты брендов</h2>
-    <p>За первый квартал 2026 года клиенты платформы суммарно пересняли более 400 000 позиций. Средний рост конверсии после обновления каталога составил 23%.</p>
-    <ul>
-      <li>Время выхода новой коллекции сократилось с 3 недель до 2 дней</li>
-      <li>Стоимость одного финального изображения — от 12 рублей</li>
-      <li>Совместимость с форматами всех крупных маркетплейсов</li>
-    </ul>
-
-    <div class="art-hr"></div>
-
-    <h2 id="s4">Что дальше</h2>
-    <p>Следующий шаг — видео. Модели уже умеют генерировать короткие loops и анимации на основе статичного фото. Ожидаем публичный релиз этой функции в третьем квартале 2026.</p>
-    <p>Подпишитесь на обновления — мы первыми сообщим о запуске.</p>
+<!-- MEDIA -->
+<div class="case-media">
+  <img src="img/urbika2.jpg" alt="">
+  <div class="case-media-group">
+    <p class="case-media-text">Интерфейс Urbika — это «второй слой» города, который открывает его родителям с новой стороны. Он помогает ориентироваться в возможностях города и выбирать, где учить, развивать и проводить время с детьми.</p>
+    <img src="img/urbika3.jpg" alt="">
   </div>
+  <video src="img/urbika4.mp4" autoplay muted loop playsinline></video>
 </div>
+
+</div><!-- /page-wrap -->
+<div id="next-spacer"></div>
 
 <script>window.BRAND_SUB = ''; window.LIGHT_NAV = true;</script>
 <script src="components/navbar.js"></script>
-<script src="components/cta.js"></script>
 <script>
 const heroEl  = document.getElementById('post-hero');
 const headEl  = document.getElementById('post-hero-head');
@@ -238,20 +267,26 @@ function animateHero() {
   const vw    = window.innerWidth;
   const colW  = (vw - 2 * outer - 11 * gap) / 12;
   const w8    = 8 * colW + 7 * gap;
-  const w12   = vw - 2 * outer;
-  const left8 = (w12 - w8) / 2;
+  const vh     = window.innerHeight;
+  const h8     = w8 * 9 / 16;
+  const left8  = (vw - w8) / 2;
 
   const topStart = headEl.offsetTop + headEl.offsetHeight + 50;
 
-  /* фаза 1: расширение 8→12 колонок (первые 100vh скролла) */
-  const phase1 = window.innerHeight;
+  const phase1 = vh;
   const p      = Math.max(0, Math.min(1, window.scrollY / phase1));
-  const curW   = w8 + (w12 - w8) * p;
 
-  coverEl.style.width  = curW + 'px';
-  coverEl.style.height = (curW * 9 / 16) + 'px';
-  coverEl.style.left   = (outer + left8 * (1 - p)) + 'px';
-  coverEl.style.top    = (topStart * (1 - p)) + 'px';
+  const curW    = w8    + (vw - w8) * p;
+  const curH    = h8    + (vh - h8) * p;
+  const curLeft = left8 * (1 - p);
+  const curTop  = topStart * (1 - p);
+  const curR    = 20 * (1 - p);
+
+  coverEl.style.width        = curW + 'px';
+  coverEl.style.height       = curH + 'px';
+  coverEl.style.left         = curLeft + 'px';
+  coverEl.style.top          = curTop + 'px';
+  coverEl.style.borderRadius = curR + 'px';
 
   /* t: прогресс по всему герою (0→1), fisheye стартует с t=0.7 */
   const heroMax = heroEl.offsetHeight - window.innerHeight;
@@ -262,13 +297,31 @@ function animateHero() {
   rafId = requestAnimationFrame(() => render(tSnap));
 }
 
+const nextInner = document.querySelector('.next-case-inner');
+if (nextInner) {
+  nextInner.style.opacity   = '0';
+  nextInner.style.transform = 'translateY(32px)';
+  nextInner.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+}
+
+function animateNextCase() {
+  if (!nextInner) return;
+  const pageWrap  = document.getElementById('page-wrap');
+  const revealStart = pageWrap.offsetTop + pageWrap.offsetHeight - window.innerHeight;
+  const revealEnd   = revealStart + 500;
+  const p = Math.max(0, Math.min(1, (window.scrollY - revealStart) / (revealEnd - revealStart)));
+  const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+  nextInner.style.opacity   = eased;
+  nextInner.style.transform = 'translateY(' + Math.round(32 * (1 - eased)) + 'px)';
+}
+
 function onScroll() {
   const maxTotal = document.documentElement.scrollHeight - window.innerHeight;
   const progress = maxTotal > 0 ? Math.max(0, Math.min(window.scrollY / maxTotal * 100, 100)) : 0;
   topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
 
   animateHero();
-
+  animateNextCase();
 
   let cur = '';
   document.querySelectorAll('h2[id],h3[id]').forEach(h => {
@@ -298,7 +351,7 @@ function goTo(id) {
     h1.innerHTML = h1.textContent.trim().split(' ').map(function(w) {
       return '<span style="display:inline-block;white-space:nowrap">' +
         w.split('').map(function(c) {
-          return '<span class="ch" style="display:inline-block;color:rgb(187,187,187)">' + c + '</span>';
+          return '<span class="ch" style="display:inline-block;color:rgb(136,136,136)">' + c + '</span>';
         }).join('') +
       '</span>';
     }).join(' ');
@@ -307,7 +360,7 @@ function goTo(id) {
     var n = spans.length;
     var R = 60;
     var gArr = [], sArr = [];
-    for (var i = 0; i < n; i++) { gArr[i] = 187; sArr[i] = 1; }
+    for (var i = 0; i < n; i++) { gArr[i] = 136; sArr[i] = 1; }
     var mx = -9999, my = -9999;
 
     window.addEventListener('mousemove', function(ev) {
@@ -320,7 +373,7 @@ function goTo(id) {
         var dx = mx - (b.left + b.width  * 0.5);
         var dy = my - (b.top  + b.height * 0.5);
         var p  = Math.max(0, 1 - Math.sqrt(dx*dx + dy*dy) / R);
-        var tg = 187 * (1 - p);
+        var tg = 136 * (1 - p);
         var ts = 1 + p * 0.1;
         gArr[i] += (tg - gArr[i]) * 0.15;
         sArr[i] += (ts - sArr[i]) * 0.15;
@@ -340,6 +393,95 @@ function goTo(id) {
     window.addEventListener('load', init);
   }
 }());
+</script>
+<script>
+(function() {
+  var cv  = document.getElementById('next-cv');
+  if (!cv) return;
+  var ctx = cv.getContext('2d');
+  var strength = 1.0, targetS = 1.0, rotY = 0.4;
+
+  var source = new Image();
+  source.src = 'img/urbika1.jpg';
+  source.onload = function() {
+    var CW = cv.offsetWidth  || window.innerWidth;
+    var CH = cv.offsetHeight || 500;
+    cv.width = CW; cv.height = CH;
+
+    /* cover: масштаб чтобы заполнить блок */
+    var imgA = source.naturalWidth / source.naturalHeight;
+    var cvA  = CW / CH;
+    var dw, dh, dx, dy;
+    if (imgA > cvA) { dh = CH; dw = CH * imgA; dx = (CW - dw) / 2; dy = 0; }
+    else            { dw = CW; dh = CW / imgA; dx = 0; dy = (CH - dh) / 2; }
+
+    var off = document.createElement('canvas');
+    off.width = CW; off.height = CH;
+    off.getContext('2d').drawImage(source, dx, dy, dw, dh);
+    var srcData = off.getContext('2d').getImageData(0, 0, CW, CH);
+
+    function render() {
+      var dst = ctx.createImageData(CW, CH);
+      var sp = srcData.data, dp = dst.data;
+      var cx = CW/2, cy = CH/2;
+      var R  = Math.min(cx, cy);
+      var s  = strength;
+      var cosR = Math.cos(rotY), sinR = Math.sin(rotY);
+      for (var py = 0; py < CH; py++) {
+        for (var px = 0; px < CW; px++) {
+          var nx = (px-cx)/R, ny = (py-cy)/R;
+          var sx, sy;
+          if (s < 0.001) {
+            sx = px; sy = py;
+          } else {
+            var rc = Math.min(1, Math.sqrt(nx*nx+ny*ny));
+            var a  = Math.atan2(ny, nx);
+            var nxc = rc*Math.cos(a), nyc = rc*Math.sin(a);
+            var nzc = Math.sqrt(Math.max(0, 1-rc*rc));
+            var x2  =  nxc*cosR + nzc*sinR;
+            var z2  = -nxc*sinR + nzc*cosR;
+            var lon = Math.atan2(x2, z2);
+            var lat = Math.asin(Math.max(-1, Math.min(1, nyc)));
+            var uS  = (lon/(2*Math.PI)+0.5)*CW;
+            var vS  = (0.5-lat/Math.PI)*CH;
+            sx = px*(1-s) + uS*s;
+            sy = py*(1-s) + vS*s;
+          }
+          var six = Math.min(CW-1, Math.max(0, Math.round(sx)));
+          var siy = Math.min(CH-1, Math.max(0, Math.round(sy)));
+          var si = (siy*CW+six)*4, di = (py*CW+px)*4;
+          dp[di]=sp[si]; dp[di+1]=sp[si+1]; dp[di+2]=sp[si+2]; dp[di+3]=255;
+        }
+      }
+      ctx.putImageData(dst, 0, 0);
+    }
+
+    function loop() {
+      var diff = targetS - strength;
+      if (Math.abs(diff) > 0.002) {
+        strength += diff * 0.08;
+        if (strength > 0.5) rotY += 0.006;
+        render();
+      }
+      requestAnimationFrame(loop);
+    }
+
+    var nextCase = document.getElementById('next-case');
+    var hoverTimer = null;
+    cv.addEventListener('mouseenter', function() {
+      targetS = 0;
+      hoverTimer = setTimeout(function() { nextCase.classList.add('is-hovered'); }, 450);
+    });
+    cv.addEventListener('mouseleave', function() {
+      targetS = 1;
+      clearTimeout(hoverTimer);
+      nextCase.classList.remove('is-hovered');
+    });
+
+    render();
+    requestAnimationFrame(loop);
+  };
+})();
 </script>
 </body>
 </html>

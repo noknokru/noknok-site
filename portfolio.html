@@ -6,112 +6,155 @@
 <title>Портфолио — Нокнок</title>
 <link rel="stylesheet" href="styles/main.css">
 <style>
-/* ─── СПИСОК ПРОЕКТОВ ─── */
-.blog-list { padding-top: 32px; display: flex; flex-direction: column; }
+#portfolio-head {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 20px; padding: 100px 0 60px;
+}
+.post-hero-tag {
+  font-size: 14px; font-weight: 500; color: var(--c-ink-3);
+  border: 1.5px solid var(--c-ink-3); border-radius: 10px;
+  padding: 6px 16px; white-space: nowrap;
+}
+.post-hero-title {
+  font-size: clamp(32px, 3.8vw, 56px); font-weight: 700;
+  line-height: 1.08; letter-spacing: -0.03em; margin: 0;
+  width: calc((100vw - 2 * var(--outer) - 11 * var(--gap)) / 12 * 4 + 3 * var(--gap));
+}
+.ch { display: inline-block; }
+.ch-word { white-space: nowrap; display: inline-block; }
 
-.bc {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gap);
-  align-items: start;
-  padding: 56px 0;
+/* ─── КЕЙСЫ ─── */
+.cases {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 120px;
+  padding-bottom: 120px;
+}
+.case-img {
+  width: calc((100vw - 2 * var(--outer) - 11 * var(--gap)) / 12 * 4 + 3 * var(--gap));
+  aspect-ratio: 16/9;
+  border-radius: 20px;
+  overflow: hidden;
   text-decoration: none;
-  transition: opacity 0.15s;
+  display: block;
 }
-.bc:hover { opacity: 0.65; }
-
-.bc-img {
-  background: #d5d5d5;
-  border-radius: var(--r-card);
-}
-
-.bc-title {
-  font-size: var(--fs-body);
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--c-ink);
-}
-.bc-tag {
-  font-size: var(--fs-label);
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--c-ink-3);
-  margin-bottom: 10px;
-}
-
-/* ── Тип 1: картинка (3–11) по центру строка 1 | текст (3–7) левый край строка 2 ── */
-.bc--1 .bc-img  { grid-column: 3 / 11; grid-row: 1; height: 480px; }
-.bc--1 .bc-text { grid-column: 3 / 7;  grid-row: 2; padding-top: 24px; }
-
-/* ── Тип 2: картинка (5–8) строка 1 | текст (5–8) строка 2 ── */
-.bc--2 .bc-img  { grid-column: 5 / 9;  grid-row: 1; height: 480px; }
-.bc--2 .bc-text { grid-column: 5 / 9;  grid-row: 2; padding-top: 24px; }
-
-/* ── Тип 3: картинка (3–11) строка 1 центр | текст (5–8) строка 2 ── */
-.bc--3 .bc-img  { grid-column: 3 / 11; grid-row: 1; height: 480px; }
-.bc--3 .bc-text { grid-column: 5 / 9;  grid-row: 2; padding-top: 24px; }
-
-/* ── Тип 4: картинка (1–12) строка 1 | текст (5–8) строка 2 ── */
-.bc--4 .bc-img  { grid-column: 1 / 13; grid-row: 1; height: 560px; }
-.bc--4 .bc-text { grid-column: 5 / 9;  grid-row: 2; padding-top: 24px; }
+.case-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 </style>
 </head>
 <body>
 
-<div id="hero-root"></div>
-
-<div class="section">
-  <div class="blog-list col-full">
-
-    <!-- Тип 1: картинка (3–11) по центру строка 1, текст (3–7) левый край строка 2 -->
-    <a class="bc bc--1" href="case-1.html">
-      <div class="bc-img"></div>
-      <div class="bc-text">
-        <div class="bc-tag">Брендинг · Интерфейсы</div>
-        <p class="bc-title">Урбика — путеводитель по городу для детей и родителей</p>
-      </div>
-    </a>
-
-    <!-- Тип 2: картинка (5–8) строка 1, текст (5–8) строка 2 -->
-    <a class="bc bc--2" href="case-2.html">
-      <div class="bc-img"></div>
-      <div class="bc-text">
-        <p class="bc-title">Редизайн платформы для управления командой</p>
-      </div>
-    </a>
-
-    <!-- Тип 3: картинка (3–11) строка 1 по центру, текст (5–8) строка 2 -->
-    <a class="bc bc--3" href="case-3.html">
-      <div class="bc-img"></div>
-      <div class="bc-text">
-        <p class="bc-title">Мобильное приложение для онлайн-записи</p>
-      </div>
-    </a>
-
+<div class="container">
+  <div id="portfolio-head">
+    <div class="post-hero-tag">Портфолио</div>
+    <h1 class="post-hero-title" id="reveal-text">Кейсы по цифровому дизайну</h1>
   </div>
 </div>
 
+<div class="cases">
+  <a class="case-img" href="case-1.html"><img src="img/urbika1.jpg" alt="Урбика"></a>
+  <a class="case-img" href="case-2.html"><img src="img/screen.png" alt="Редизайн платформы"></a>
+  <a class="case-img" href="case-3.html"><img src="img/urbika2.jpg" alt="Мобильное приложение"></a>
+</div>
+
+<script>window.BRAND_SUB = ''; window.LIGHT_NAV = true;</script>
 <script src="components/navbar.js"></script>
-<script src="components/hero.js"></script>
 <script src="components/cta.js"></script>
 <script>
-renderHero({ title: 'Портфолио' });
-
-const hero    = document.getElementById('hero');
 const leftnav = document.getElementById('leftnav');
 const copy    = document.getElementById('copyright');
 const topnav  = document.getElementById('topnav');
+leftnav.classList.add('dark');
+copy.classList.add('dark');
 
 function onScroll() {
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
+  const maxTotal = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = maxTotal > 0 ? Math.max(0, Math.min(window.scrollY / maxTotal * 100, 100)) : 0;
   topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
-  const pastHero = window.scrollY > hero.offsetHeight * 0.85;
-  leftnav.classList.toggle('dark', pastHero);
-  copy.classList.toggle('dark', pastHero);
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
+</script>
+<script>
+(function () {
+  var imgs = Array.from(document.querySelectorAll('.case-img'));
+  var outer, gap, w8, w12;
+
+  function measure() {
+    var s = getComputedStyle(document.documentElement);
+    outer = parseFloat(s.getPropertyValue('--outer')) || 40;
+    gap   = parseFloat(s.getPropertyValue('--gap'))   || 20;
+    var col = (window.innerWidth - 2 * outer - 11 * gap) / 12;
+    w8  = col * 4  + 3  * gap;
+    w12 = col * 8  + 7  * gap;
+  }
+
+  function update() {
+    var vh      = window.innerHeight;
+    var vCenter = vh / 2;
+    imgs.forEach(function (img) {
+      var rect   = img.getBoundingClientRect();
+      var imgCtr = rect.top + rect.height / 2;
+      var dist   = Math.abs(imgCtr - vCenter);
+      var p      = Math.max(0, 1 - dist / (vh * 0.65));
+      p = p * p * (3 - 2 * p); // smoothstep
+      img.style.width = (w8 + (w12 - w8) * p).toFixed(1) + 'px';
+    });
+  }
+
+  measure(); update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', function () { measure(); update(); });
+}());
+</script>
+<script>
+(function () {
+  function init() {
+    var h1 = document.getElementById('reveal-text');
+    if (!h1) return;
+
+    h1.innerHTML = h1.textContent.trim().split(' ').map(function(w) {
+      return '<span style="display:inline-block;white-space:nowrap">' +
+        w.split('').map(function(c) {
+          return '<span class="ch" style="display:inline-block;color:rgb(136,136,136)">' + c + '</span>';
+        }).join('') +
+      '</span>';
+    }).join(' ');
+
+    var spans = h1.querySelectorAll('.ch');
+    var n = spans.length;
+    var R = 60;
+    var gArr = [], sArr = [];
+    for (var i = 0; i < n; i++) { gArr[i] = 136; sArr[i] = 1; }
+    var mx = -9999, my = -9999;
+
+    window.addEventListener('mousemove', function(ev) {
+      mx = ev.clientX; my = ev.clientY;
+    });
+
+    function tick() {
+      for (var i = 0; i < n; i++) {
+        var b  = spans[i].getBoundingClientRect();
+        var dx = mx - (b.left + b.width  * 0.5);
+        var dy = my - (b.top  + b.height * 0.5);
+        var p  = Math.max(0, 1 - Math.sqrt(dx*dx + dy*dy) / R);
+        var tg = 136 * (1 - p);
+        var ts = 1 + p * 0.1;
+        gArr[i] += (tg - gArr[i]) * 0.15;
+        sArr[i] += (ts - sArr[i]) * 0.15;
+        var g = Math.round(gArr[i]);
+        spans[i].style.color     = 'rgb(' + g + ',' + g + ',' + g + ')';
+        spans[i].style.transform = 'scale(' + sArr[i].toFixed(3) + ')';
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if (document.readyState === 'complete') {
+    init();
+  } else {
+    window.addEventListener('load', init);
+  }
+}());
 </script>
 </body>
 </html>

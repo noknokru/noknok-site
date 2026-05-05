@@ -39,7 +39,7 @@
 
     const section = document.createElement('div');
     section.className = 'section';
-    section.style.paddingTop = '28px';
+    section.style.cssText = 'padding-top:24px;padding-bottom:40px;';
     section.innerHTML = `
       <div class="case-intro">
         ${tagsHtml ? `<div class="case-tag-pill">${tagsHtml}</div>` : ''}

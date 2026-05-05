@@ -424,7 +424,8 @@ function goTo(id) {
       var dst = ctx.createImageData(CW, CH);
       var sp = srcData.data, dp = dst.data;
       var cx = CW/2, cy = CH/2;
-      var R  = Math.min(cx, cy);
+      var padding = Math.min(CW, CH) * 0.10;
+      var R  = Math.min(CW, CH) / 2 - padding;
       var s  = strength;
       var cosR = Math.cos(rotY), sinR = Math.sin(rotY);
       for (var py = 0; py < CH; py++) {

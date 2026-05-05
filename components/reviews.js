@@ -9,11 +9,11 @@
 .rs-track { display: flex; transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
 .rs-slide { flex-shrink: 0; width: 100%; }
 .rs-card {
-  background: #fff; border: 1px solid #e8e8e8;
+  background: #F3F2F7; border: 1px solid #DDDCE1;
   border-radius: 24px; padding: 40px;
   min-height: 480px; display: flex; flex-direction: column; justify-content: space-between;
 }
-.rs-quote { font-size: 22px; line-height: 1.55; color: #111; }
+.rs-quote { font-size: 20px; line-height: 1.2; color: #111; margin-bottom: 32px; }
 .rs-author { display: flex; align-items: center; gap: 20px; }
 .rs-avatar {
   width: 96px; height: 96px; border-radius: 14px;

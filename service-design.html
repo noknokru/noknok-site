@@ -6,6 +6,40 @@
 <title>Дизайн интерфейсов — Нокнок</title>
 <link rel="stylesheet" href="styles/main.css">
 <style>
+body { background: #F7F6FB; }
+.section { padding-top: 60px !important; padding-bottom: 0 !important; }
+.format-name { font-size: 20px !important; line-height: 1.2 !important; }
+.format-desc { font-size: 20px !important; line-height: 1.2 !important; }
+.format-price { font-size: 20px !important; line-height: 1.2 !important; }
+.rs-label { display: none; }
+.rs-heading { text-align: center; }
+.for-list { display: flex; flex-direction: column; gap: 16px; }
+.for-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: #F3F2F7; border: 1px solid #DDDCE1;
+  border-radius: var(--r-card); padding: 16px 20px;
+  font-size: 20px; line-height: 1.2; color: var(--c-ink-2);
+  transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.for-item:hover { background: #EEEDF2; box-shadow: 0 6px 26px rgba(0,0,0,0.11); transform: scale(1.02); }
+.for-item img { width: 32px; height: 32px; flex-shrink: 0; margin-top: 2px; }
+/* ─── HERO ─── */
+#post-hero { height: 300vh; }
+#post-hero-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+#post-hero-head {
+  position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+  width: calc((100vw - 2 * var(--outer) - 11 * var(--gap)) / 12 * 6 + 5 * var(--gap));
+  display: flex; flex-direction: column; gap: 16px;
+  align-items: center; text-align: center; z-index: 1;
+}
+.post-hero-title {
+  font-size: clamp(32px, 3.8vw, 56px); font-weight: 700;
+  line-height: 1.08; letter-spacing: -0.03em; margin: 0;
+}
+#post-hero-cover {
+  position: absolute; border-radius: 20px; background: #222; overflow: hidden; z-index: 2;
+}
+#post-hero-cover canvas { width: 100%; height: 100%; display: block; pointer-events: none; }
 /* ─── ЧТО ДЕЛАЕМ / КАК НАЧАТЬ ─── */
 .step-list { display: flex; flex-direction: column; }
 .step-item { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--c-border); }
@@ -15,81 +49,116 @@
 .step-body h3 { font-size: var(--fs-h3); font-weight: 500; letter-spacing: var(--ls-tighter); color: var(--c-ink); line-height: var(--lh-tight); margin-bottom: 8px; }
 .step-body p  { font-size: var(--fs-ui); line-height: 1.55; color: var(--c-ink-2); }
 
+.result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.result-grid .for-item { aspect-ratio: 1; flex-direction: column; justify-content: flex-end; align-items: flex-start; text-align: left; }
+.for-item--step { align-items: flex-start; }
+.for-item--step .step-img { width: 60px; height: 60px; object-fit: contain; flex-shrink: 0; margin-top: 2px; }
+.for-item--step .step-body { display: flex; flex-direction: column; gap: 4px; }
+.for-item--step strong { font-size: 20px; font-weight: 600; line-height: 1.2; color: var(--c-ink); display: block; }
+.for-item--step .step-desc { font-size: 20px; line-height: 1.2; color: var(--c-ink-3); display: block; }
+/* ─── ДЕКА КЕЙСОВ ─── */
+.deck-wrap { display: flex; flex-direction: column; align-items: center; gap: 28px; user-select: none; -webkit-user-select: none; }
+.deck-card img { -webkit-user-drag: none; }
+.deck {
+  position: relative; width: 480px; height: 340px;
+  cursor: grab;
+}
+.deck:active { cursor: grabbing; }
+.deck-card {
+  position: absolute; inset: 0;
+  border-radius: 20px; overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1), filter 0.45s;
+  will-change: transform;
+}
+.deck-card img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.deck-label { font-size: 18px; color: var(--c-ink-2); text-align: center; }
+/* ─── ТАБЫ ОТРАСЛЕЙ ─── */
+.tabs-wrap { display: flex; flex-direction: column; gap: 24px; }
+.tabs-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.tab-btn {
+  font-size: 15px; font-weight: 500; color: var(--c-ink-3);
+  border: 1.5px solid var(--c-border); border-radius: 100px;
+  padding: 8px 20px; background: none; cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.tab-btn:hover { border-color: #bbb; color: var(--c-ink-2); }
+.tab-btn.active { border-color: var(--c-ink); color: var(--c-ink); }
+.tabs-body {
+  background: #F3F2F7; border: 1px solid #DDDCE1;
+  border-radius: var(--r-card); padding: 32px 36px;
+  display: none;
+}
+.tabs-body.visible { display: block; }
+.tab-text { font-size: 20px; line-height: 1.2; color: var(--c-ink-2); margin-bottom: 24px; }
+.tab-metrics-title { font-size: 20px; font-weight: 600; line-height: 1.2; color: var(--c-ink); margin-bottom: 12px; }
+.tab-metrics { display: flex; flex-direction: column; gap: 6px; }
+.tab-metric { font-size: 20px; line-height: 1.2; color: var(--c-ink-3); }
 /* ─── ФОРМАТЫ ─── */
 .formats-grid { display: flex; flex-direction: column; gap: 10px; }
-.format-card  { border: 1px solid var(--c-border); border-radius: var(--r-card); padding: 24px 28px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.format-card  { background: #F3F2F7; border: 1px solid #DDDCE1; border-radius: var(--r-card); padding: 24px 28px; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; transition: background 0.15s, box-shadow 0.15s, transform 0.15s; }
+.format-card:hover { background: #EEEDF2; box-shadow: 0 6px 26px rgba(0,0,0,0.11); transform: scale(1.02); }
 .format-body  { display: flex; flex-direction: column; gap: 6px; }
 .format-name  { font-size: 20px; font-weight: 500; color: var(--c-ink); letter-spacing: var(--ls-tighter); }
-.format-desc  { font-size: var(--fs-ui); color: var(--c-ink-2); line-height: 1.5; }
-.format-price { font-size: var(--fs-ui); font-weight: 500; color: var(--c-ink-3); white-space: nowrap; padding-top: 4px; }
+.format-desc  { font-size: var(--fs-ui); color: var(--c-ink-3); line-height: 1.5; }
+.format-price { font-size: var(--fs-ui); font-weight: 500; color: var(--c-ink); white-space: nowrap; padding-top: 4px; }
 </style>
 </head>
 <body>
 
-<div id="hero-root"></div>
+<div id="post-hero">
+  <div id="post-hero-sticky">
+    <div id="post-hero-head">
+      <h1 class="post-hero-title" id="reveal-text">Дизайн интерфейсов</h1>
+    </div>
+    <div id="post-hero-cover">
+      <canvas id="cv"></canvas>
+    </div>
+  </div>
+</div>
 
 <!-- ДЛЯ КОГО -->
 <div class="section">
   <div class="container">
-    <div class="section-label">Для кого</div>
-    <h2 class="section-title">Вам подойдёт если:</h2>
-    <ul class="bullet-list">
-      <li>Есть продукт, но дизайн не поспевает за его ростом</li>
-      <li>Внутренняя команда перегружена или не хватает экспертизы в UI</li>
-      <li>Продукт работает, но выглядит как все — нет характера, нет узнаваемости</li>
-      <li>Нужен редизайн, но непонятно с чего начать и как не сломать то что работает</li>
-      <li>Запускаете новый продукт и хотите сразу сделать правильно</li>
-    </ul>
+    <h2 class="section-title" style="text-align:center;">Вам подойдёт если:</h2>
+    <div class="for-list" id="for-list-who">
+      <div class="for-item"><img src="img/ul.svg" alt="">Есть продукт, но дизайн не поспевает за его ростом — нужен свежий взгляд и чёткие приоритеты</div>
+      <div class="for-item"><img src="img/ul.svg" alt="">Внутренняя команда перегружена или не хватает экспертизы чтобы сделать интерфейс на уровне</div>
+      <div class="for-item"><img src="img/ul.svg" alt="">Продукт работает, но выглядит как все — нет характера, нет узнаваемости, нет притяжения</div>
+      <div class="for-item"><img src="img/ul.svg" alt="">Нужен редизайн, но непонятно с чего начать и как не сломать то что уже работает</div>
+      <div class="for-item"><img src="img/ul.svg" alt="">Запускаете новый продукт и хотите сразу заложить правильный визуальный язык</div>
+      <div class="for-item"><img src="img/ul.svg" alt="">Есть бренд и гайдлайны, но в интерфейсе от них не осталось ничего</div>
+    </div>
   </div>
 </div>
 
 <!-- ЧТО ДЕЛАЕМ -->
 <div class="section">
   <div class="container">
-    <div class="section-label">Что делаем</div>
-    <h2 class="section-title">Из чего состоит работа</h2>
-    <div class="step-list">
-      <div class="step-item">
-        <div class="step-num">01</div>
-        <div class="step-body">
-          <h3>Концепция</h3>
-          <p>Начинаем с поиска сильной идеи — как продукт должен выглядеть, ощущаться и чем отличаться. Это быстро: за 1–2 недели у вас будет визуальное направление которое можно обсуждать и защищать внутри команды.</p>
-        </div>
+    <h2 class="section-title" style="text-align:center;">Из чего состоит работа</h2>
+    <div class="for-list">
+      <div class="for-item for-item--step">
+        <img class="step-img" src="img/img-1.png" alt="">
+        <div class="step-body"><strong>Концепция</strong><span class="step-desc">Начинаем с поиска сильной идеи — как продукт должен выглядеть, ощущаться и чем отличаться. Это быстро: за 1–2 недели у вас будет визуальное направление которое можно обсуждать и защищать внутри команды.</span></div>
       </div>
-      <div class="step-item">
-        <div class="step-num">02</div>
-        <div class="step-body">
-          <h3>Проектирование</h3>
-          <p>Выстраиваем логику продукта: пользовательские сценарии, навигацию, иерархию информации. Каждое решение объясняем — не потому что так принято, а потому что это помогает команде двигаться дальше без нас.</p>
-        </div>
+      <div class="for-item for-item--step">
+        <img class="step-img" src="img/img-2.png" alt="">
+        <div class="step-body"><strong>Проектирование</strong><span class="step-desc">Выстраиваем логику продукта: пользовательские сценарии, навигацию, иерархию информации. Каждое решение объясняем — не потому что так принято, а потому что это помогает команде двигаться дальше без нас.</span></div>
       </div>
-      <div class="step-item">
-        <div class="step-num">03</div>
-        <div class="step-body">
-          <h3>UI и визуальный язык</h3>
-          <p>Проектируем интерфейс который узнаётся. Цвет, типографика, сетка, компоненты — всё строится от бренда, а не от шаблона. Результат: продукт который выглядит цельно на любом экране.</p>
-        </div>
+      <div class="for-item for-item--step">
+        <img class="step-img" src="img/img-4.png" alt="">
+        <div class="step-body"><strong>UI и визуальный язык</strong><span class="step-desc">Проектируем интерфейс который узнаётся. Цвет, типографика, сетка, компоненты — всё строится от бренда, а не от шаблона. Результат: продукт который выглядит цельно на любом экране.</span></div>
       </div>
-      <div class="step-item">
-        <div class="step-num">04</div>
-        <div class="step-body">
-          <h3>Детали и анимации</h3>
-          <p>Микроанимации, поведение элементов, реакции интерфейса, копирайтинг кнопок и подсказок. Именно здесь формируется ощущение — приятно или нет, живое или мёртвое.</p>
-        </div>
+      <div class="for-item for-item--step">
+        <img class="step-img" src="img/img-3.png" alt="">
+        <div class="step-body"><strong>Детали и анимации</strong><span class="step-desc">Микроанимации, поведение элементов, реакции интерфейса, копирайтинг кнопок и подсказок. Именно здесь формируется ощущение — приятно или нет, живое или мёртвое.</span></div>
       </div>
-      <div class="step-item">
-        <div class="step-num">05</div>
-        <div class="step-body">
-          <h3>Дизайн-система</h3>
-          <p>Компонентная библиотека которую команда может развивать самостоятельно. Не набор экранов а инструмент — с документацией, правилами и логикой.</p>
-        </div>
+      <div class="for-item for-item--step">
+        <img class="step-img" src="img/img-1.png" alt="">
+        <div class="step-body"><strong>Дизайн-система</strong><span class="step-desc">Компонентная библиотека которую команда может развивать самостоятельно. Не набор экранов а инструмент — с документацией, правилами и логикой.</span></div>
       </div>
-      <div class="step-item">
-        <div class="step-num">06</div>
-        <div class="step-body">
-          <h3>Передача в разработку</h3>
-          <p>Готовим макеты к передаче: аннотации, спецификации, ответы на вопросы разработчиков. Остаёмся на связи в процессе имплементации — чтобы продукт в браузере выглядел как в Figma.</p>
-        </div>
+      <div class="for-item for-item--step">
+        <img class="step-img" src="img/img-2.png" alt="">
+        <div class="step-body"><strong>Передача в разработку</strong><span class="step-desc">Готовим макеты к передаче: аннотации, спецификации, ответы на вопросы разработчиков. Остаёмся на связи в процессе имплементации — чтобы продукт в браузере выглядел как в Figma.</span></div>
       </div>
     </div>
   </div>
@@ -98,28 +167,34 @@
 <!-- ЧТО ПОЛУЧАЕТЕ -->
 <div class="section">
   <div class="container">
-    <div class="section-label">Результат</div>
-    <h2 class="section-title">Что получаете</h2>
-    <ul class="bullet-list">
-      <li>Готовые макеты всех экранов в Figma</li>
-      <li>Дизайн-систему с компонентами и документацией</li>
-      <li>Прототип для тестирования и презентаций</li>
-      <li>Аннотации и спецификации для разработки</li>
-      <li>Поддержку на этапе имплементации</li>
-    </ul>
+    <h2 class="section-title" style="text-align:center;">Что получаете</h2>
+    <div class="result-grid">
+      <div class="for-item">Доступ к макетам с первого дня</div>
+      <div class="for-item">Макеты всех сценариев в Figma</div>
+      <div class="for-item">Систему компонентов</div>
+      <div class="for-item">Поддержку на этапе разработки</div>
+    </div>
   </div>
 </div>
 
 <!-- ОТРАСЛИ -->
 <div class="section">
   <div class="container">
-    <div class="section-label">Отрасли</div>
-    <div class="expertise-tags">
-      <span class="expertise-tag">AI продукты</span>
-      <span class="expertise-tag">Фудтех</span>
-      <span class="expertise-tag">E-commerce</span>
-      <span class="expertise-tag">LMS</span>
-      <span class="expertise-tag">Autotech</span>
+    <h2 class="section-title" style="text-align:center;">Экспертиза в отраслях</h2>
+    <div class="tabs-wrap">
+      <div class="tabs-nav" id="tabs-nav"></div>
+      <div class="tabs-body" id="tabs-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- КЕЙСЫ -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title" style="text-align:center;">Примеры работ</h2>
+    <div class="deck-wrap">
+      <div class="deck" id="deck"></div>
+      <div class="deck-label" id="deck-label"></div>
     </div>
   </div>
 </div>
@@ -127,8 +202,7 @@
 <!-- ФОРМАТЫ -->
 <div class="section">
   <div class="container">
-    <div class="section-label">Форматы</div>
-    <h2 class="section-title">Как работаем</h2>
+    <h2 class="section-title" style="text-align:center;">Как работаем</h2>
     <div class="formats-grid">
       <div class="format-card">
         <div class="format-body">
@@ -158,36 +232,19 @@
 <!-- КАК НАЧАТЬ -->
 <div class="section">
   <div class="container">
-    <div class="section-label">Старт</div>
-    <h2 class="section-title">Как начать</h2>
-    <div class="step-list">
-      <div class="step-item">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>Заявка</h3>
-          <p>Оставьте заявку — ответим в течение рабочего дня и предложим время для звонка.</p>
-        </div>
+    <h2 class="section-title" style="text-align:center;">Как начать</h2>
+    <div class="for-list">
+      <div class="for-item for-item--step">
+        <div class="step-body"><strong>Заявка</strong><span class="step-desc">Оставьте заявку — ответим в течение рабочего дня и предложим время для звонка.</span></div>
       </div>
-      <div class="step-item">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>Звонок</h3>
-          <p>Узнаём задачу, продукт, контекст. Без брифа и ТЗ — всё выясним сами.</p>
-        </div>
+      <div class="for-item for-item--step">
+        <div class="step-body"><strong>Звонок</strong><span class="step-desc">Узнаём задачу, продукт, контекст. Без брифа и ТЗ — всё выясним сами.</span></div>
       </div>
-      <div class="step-item">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>Предложение</h3>
-          <p>Через 1–2 дня пришлём план работ, состав команды и стоимость.</p>
-        </div>
+      <div class="for-item for-item--step">
+        <div class="step-body"><strong>Предложение</strong><span class="step-desc">Через 1–2 дня пришлём план работ, состав команды и стоимость.</span></div>
       </div>
-      <div class="step-item">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <h3>Старт</h3>
-          <p>Согласуем процессы и запускаем работу. С первого дня у вас есть доступ к макетам и еженедельные отчёты.</p>
-        </div>
+      <div class="for-item for-item--step">
+        <div class="step-body"><strong>Старт</strong><span class="step-desc">Согласуем процессы и запускаем работу. С первого дня у вас есть доступ к макетам и еженедельные отчёты.</span></div>
       </div>
     </div>
   </div>
@@ -196,30 +253,320 @@
 <!-- ОТЗЫВЫ -->
 <div class="section" id="reviews-root"></div>
 
-<script>window.BRAND_SUB = 'Услуги';</script>
+<script>window.BRAND_SUB = 'Услуги'; window.LIGHT_NAV = true;</script>
 <script src="components/navbar.js"></script>
-<script src="components/hero.js"></script>
 <script src="components/reviews.js"></script>
 <script src="components/cta.js"></script>
 <script>
-  renderReviews('reviews-root', { label: 'Отзывы', title: 'Что говорят клиенты' });
-  renderHero({ title: 'Дизайн интерфейсов' });
+  renderReviews('reviews-root', { title: 'Что говорят клиенты' });
 
-  const hero    = document.getElementById('hero');
+  const heroEl  = document.getElementById('post-hero');
+  const headEl  = document.getElementById('post-hero-head');
+  const coverEl = document.getElementById('post-hero-cover');
+  const cv      = document.getElementById('cv');
+  const ctx     = cv.getContext('2d');
   const leftnav = document.getElementById('leftnav');
   const copy    = document.getElementById('copyright');
   const topnav  = document.getElementById('topnav');
+  leftnav.classList.add('dark');
+  copy.classList.add('dark');
+
+  let srcData = null, lastT = -1, rafId = null;
+
+  function initCanvas(img) {
+    let cw = img.naturalWidth, ch = img.naturalHeight;
+    if (cw > 1440) { ch = Math.round(ch * 1440 / cw); cw = 1440; }
+    cv.width = cw; cv.height = ch;
+    ctx.drawImage(img, 0, 0, cw, ch);
+    try { srcData = ctx.getImageData(0, 0, cw, ch); } catch(e) {}
+    animateHero();
+  }
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'img/screen.png', true);
+  xhr.responseType = 'blob';
+  xhr.onload = function() {
+    const url = URL.createObjectURL(xhr.response);
+    const img = new Image();
+    img.onload = function() { initCanvas(img); URL.revokeObjectURL(url); };
+    img.src = url;
+  };
+  xhr.onerror = function() {
+    const img = new Image();
+    img.onload = function() { initCanvas(img); };
+    img.src = 'img/screen.png';
+  };
+  xhr.send();
+
+  function easeInOut(x) { return x < 0.5 ? 2*x*x : 1 - Math.pow(-2*x+2,2)/2; }
+  function easeOut(x)   { return 1 - Math.pow(1-x, 3); }
+
+  function applyFisheye(src, strength, zoom) {
+    const W = cv.width, H = cv.height;
+    const dst = ctx.createImageData(W, H);
+    const cx = W/2, cy = H/2, R = Math.min(cx, cy);
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const nx = (x - cx) / (R * zoom), ny = (y - cy) / (R * zoom);
+        const r  = Math.sqrt(nx*nx + ny*ny);
+        const f  = strength < 0.001 ? 1 : 1 / (1 + strength * r * r);
+        const sx = Math.round(cx + nx * f * R * zoom);
+        const sy = Math.round(cy + ny * f * R * zoom);
+        const di = (y * W + x) * 4;
+        if (sx >= 0 && sx < W && sy >= 0 && sy < H) {
+          const si = (sy * W + sx) * 4;
+          dst.data[di]   = src.data[si];
+          dst.data[di+1] = src.data[si+1];
+          dst.data[di+2] = src.data[si+2];
+          dst.data[di+3] = 255;
+        }
+      }
+    }
+    return dst;
+  }
+
+  function render(t) {
+    if (!srcData) return;
+    if (Math.abs(t - lastT) < 0.005) return;
+    lastT = t;
+    const e = easeInOut(t);
+    const zoom = 1.0 - e * 0.22;
+    const fishProgress = Math.max(0, (t - 0.7) / 0.3);
+    const fishStrength = easeOut(fishProgress) * 0.35;
+    ctx.putImageData(applyFisheye(srcData, fishStrength, zoom), 0, 0);
+  }
+
+  function animateHero() {
+    const cs    = getComputedStyle(document.documentElement);
+    const outer = parseFloat(cs.getPropertyValue('--outer')) || 40;
+    const gap   = parseFloat(cs.getPropertyValue('--gap'))   || 20;
+    const vw    = window.innerWidth;
+    const colW  = (vw - 2 * outer - 11 * gap) / 12;
+    const w8    = 8 * colW + 7 * gap;
+    const vh    = window.innerHeight;
+    const h8    = w8 * 9 / 16;
+    const left8 = (vw - w8) / 2;
+    const topStart = headEl.offsetTop + headEl.offsetHeight + 50;
+    const p     = Math.max(0, Math.min(1, window.scrollY / vh));
+    coverEl.style.width        = (w8    + (vw - w8) * p).toFixed(1) + 'px';
+    coverEl.style.height       = (h8    + (vh - h8) * p).toFixed(1) + 'px';
+    coverEl.style.left         = (left8 * (1 - p)).toFixed(1) + 'px';
+    coverEl.style.top          = (topStart * (1 - p)).toFixed(1) + 'px';
+    coverEl.style.borderRadius = (20 * (1 - p)).toFixed(1) + 'px';
+    const heroMax = heroEl.offsetHeight - vh;
+    const t = heroMax > 0 ? Math.min(1, Math.max(0, window.scrollY / heroMax)) : 0;
+    if (rafId) cancelAnimationFrame(rafId);
+    const tSnap = t;
+    rafId = requestAnimationFrame(() => render(tSnap));
+  }
 
   function onScroll() {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll * 100, 100)) : 0;
     topnav.style.setProperty('--scroll', progress.toFixed(2) + '%');
-    const pastHero = window.scrollY > hero.offsetHeight * 0.85;
-    leftnav.classList.toggle('dark', pastHero);
-    copy.classList.toggle('dark', pastHero);
+    animateHero();
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', animateHero);
+  animateHero();
   onScroll();
+</script>
+<script>
+(function () {
+  function init() {
+    var h1 = document.querySelector('.post-hero-title');
+    if (!h1) return;
+
+    h1.innerHTML = h1.textContent.trim().split(' ').map(function(w) {
+      return '<span style="display:inline-block;white-space:nowrap">' +
+        w.split('').map(function(c) {
+          return '<span class="ch" style="display:inline-block;color:rgb(136,136,136)">' + c + '</span>';
+        }).join('') +
+      '</span>';
+    }).join(' ');
+
+    var spans = h1.querySelectorAll('.ch');
+    var n = spans.length;
+    var R = 80;
+    var gArr = [], sArr = [];
+    for (var i = 0; i < n; i++) { gArr[i] = 136; sArr[i] = 1; }
+    var mx = -9999, my = -9999;
+
+    window.addEventListener('mousemove', function(ev) { mx = ev.clientX; my = ev.clientY; });
+
+    function tick() {
+      for (var i = 0; i < n; i++) {
+        var b  = spans[i].getBoundingClientRect();
+        var dx = mx - (b.left + b.width  * 0.5);
+        var dy = my - (b.top  + b.height * 0.5);
+        var p  = Math.max(0, 1 - Math.sqrt(dx*dx + dy*dy) / R);
+        var tg = 136 * (1 - p);
+        var ts = 1 + p * 0.1;
+        gArr[i] += (tg - gArr[i]) * 0.15;
+        sArr[i] += (ts - sArr[i]) * 0.15;
+        var g = Math.round(gArr[i]);
+        spans[i].style.color     = 'rgb(' + g + ',' + g + ',' + g + ')';
+        spans[i].style.transform = 'scale(' + sArr[i].toFixed(3) + ')';
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  if (document.readyState === 'complete') { init(); }
+  else { window.addEventListener('load', init); }
+}());
+</script>
+<script>
+(function () {
+  function equalizeForItems() {
+    var items = Array.from(document.querySelectorAll('#for-list-who .for-item'));
+    items.forEach(function(el) { el.style.height = ''; });
+    var max = items.reduce(function(m, el) { return Math.max(m, el.offsetHeight); }, 0);
+    items.forEach(function(el) { el.style.height = max + 'px'; });
+  }
+  window.addEventListener('load', equalizeForItems);
+  window.addEventListener('resize', equalizeForItems);
+}());
+</script>
+<script>
+(function () {
+  var INDUSTRIES = [
+    {
+      name: 'AI продукты',
+      text: 'AI-продукты обещают многое — но пользователь уходит если не понимает что происходит и не чувствует контроля. Проектируем интерфейсы где AI-функции объяснены, онбординг снижает барьер входа, а доверие к продукту растёт с каждым использованием.',
+      metrics: ['Activation rate (дошёл до первого результата)', 'Time to value (как быстро пользователь почувствовал пользу)', 'Retention D7/D30', 'Feature adoption (используют ли AI-функции повторно)', 'Error recovery rate (справляется ли интерфейс когда AI ошибается)']
+    },
+    {
+      name: 'Фудтех',
+      text: 'В фудтехе решение принимается за секунды — пользователь голоден, нетерпелив и легко уходит к конкуренту. Проектируем интерфейсы где путь от желания до заказа минимален, а бренд чувствуется в каждой детали — от карточки блюда до экрана подтверждения.',
+      metrics: ['Конверсия в заказ', 'Средний чек', 'Повторные заказы / retention', 'Время оформления заказа', 'Отказы на этапе корзины']
+    },
+    {
+      name: 'LMS системы',
+      text: 'Обучение работает только если студент возвращается. В LMS дизайн напрямую влияет на завершаемость курсов — через прогресс, мотивацию и ощущение что учиться здесь приятно. Проектируем среды где бренд образовательной компании виден в каждом экране, а не только на лендинге.',
+      metrics: ['Course completion rate', 'Time to productivity (новый сотрудник / студент)', 'DAU/WAU', 'NPS платформы', 'Повторные покупки курсов']
+    },
+    {
+      name: 'Autotech',
+      text: 'Autotech-продукты работают в условиях высокой ответственности — водитель, механик или менеджер автопарка не прощают интерфейс который путает или тормозит. Проектируем системы где информация считывается быстро, действия очевидны, а бренд считывается даже в B2B-среде.',
+      metrics: ['Time on task (скорость выполнения ключевого действия)', 'Error rate', 'Adoption rate среди водителей / механиков', 'Retention в B2B-контракте', 'NPS среди конечных пользователей']
+    },
+    {
+      name: 'E-commerce',
+      text: 'В e-commerce дизайн — это прямая конверсия. Но магазины которые растут вдолгую — это не те у кого лучше кнопка "купить", а те к кому возвращаются потому что приятно. Проектируем интерфейсы где бренд магазина чувствуется в каждой точке — от каталога до письма после покупки.',
+      metrics: ['Конверсия в покупку', 'Средний чек', 'Повторные покупки / LTV', 'Abandonment rate корзины', 'Время до первой покупки']
+    }
+  ];
+
+  var nav  = document.getElementById('tabs-nav');
+  var body = document.getElementById('tabs-body');
+  if (!nav || !body) return;
+
+  INDUSTRIES.forEach(function (ind, i) {
+    var btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = ind.name;
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      showTab(i);
+    });
+    nav.appendChild(btn);
+  });
+
+  function showTab(i) {
+    var ind = INDUSTRIES[i];
+    body.className = 'tabs-body visible';
+    body.innerHTML =
+      '<p class="tab-text">' + ind.text + '</p>' +
+      '<div class="tab-metrics-title">Метрики</div>' +
+      '<div class="tab-metrics">' +
+        ind.metrics.map(function (m) {
+          return '<div class="tab-metric">— ' + m + '</div>';
+        }).join('') +
+      '</div>';
+  }
+
+  showTab(0);
+}());
+</script>
+<script>
+(function () {
+  var CASES = [
+    { src: 'img/urbika1.jpg', label: 'Урбика — путеводитель по городу' },
+    { src: 'img/screen.png',  label: 'Редизайн платформы' },
+    { src: 'img/urbika2.jpg', label: 'Мобильное приложение' }
+  ];
+
+  var deck  = document.getElementById('deck');
+  var label = document.getElementById('deck-label');
+  if (!deck || !label) return;
+
+  var n       = CASES.length;
+  var current = 0;
+  var cards   = [];
+
+  CASES.forEach(function (c, i) {
+    var el = document.createElement('div');
+    el.className = 'deck-card';
+    el.innerHTML = '<img src="' + c.src + '" alt="' + c.label + '">';
+    deck.appendChild(el);
+    cards.push(el);
+  });
+
+  function getPos(i) {
+    var offset = ((i - current) % n + n) % n;
+    if (offset > n / 2) offset -= n;
+    return offset;
+  }
+
+  function render() {
+    label.textContent = CASES[current].label;
+    cards.forEach(function (card, i) {
+      var pos = getPos(i);
+      var absPos = Math.abs(pos);
+      var z     = n - absPos;
+      var tx    = pos * 55;
+      var rot   = pos * 6;
+      var scale = 1 - absPos * 0.08;
+      var bright = 1 - absPos * 0.25;
+      card.style.zIndex    = z;
+      card.style.transform = 'translateX(' + tx + 'px) rotate(' + rot + 'deg) scale(' + scale + ')';
+      card.style.filter    = 'brightness(' + bright + ')';
+    });
+  }
+
+  function advance(dir) {
+    current = ((current + dir) % n + n) % n;
+    render();
+  }
+
+  /* drag / click */
+  var startX = 0, dragging = false, moved = false;
+  deck.addEventListener('mousedown', function (e) {
+    e.preventDefault();
+    startX = e.clientX; dragging = true; moved = false;
+  });
+  window.addEventListener('mousemove', function (e) {
+    if (!dragging) return;
+    if (Math.abs(e.clientX - startX) > 8) moved = true;
+  });
+  window.addEventListener('mouseup', function (e) {
+    if (!dragging) return;
+    dragging = false;
+    var dx = e.clientX - startX;
+    if (Math.abs(dx) > 40) advance(dx < 0 ? 1 : -1);
+  });
+  /* touch */
+  deck.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+  deck.addEventListener('touchend',   function (e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) advance(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  render();
+}());
 </script>
 </body>
 </html>
